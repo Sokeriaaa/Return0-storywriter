@@ -1,0 +1,6 @@
+[submodule "src/main/kotlin/sokeriaaa/return0/shared"]
+	path = src/main/kotlin/sokeriaaa/return0/shared
+	url = https://github.com/Sokeriaaa/Return0-shared.git
+[submodule "src/test/kotlin/sokeriaaa/return0/test/shared"]
+	path = src/test/kotlin/sokeriaaa/return0/test/shared
+	url = https://github.com/Sokeriaaa/Return0-shared-test.git
