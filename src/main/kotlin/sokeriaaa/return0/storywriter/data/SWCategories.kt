@@ -285,20 +285,18 @@ object SWCategories {
 
     val categoryEffectivenessTable = Category.entries
         .associateWith { category ->
-            val attack = ArrayList<CategoryEffectiveness.Rate>()
-            val defend = ArrayList<CategoryEffectiveness.Rate>()
+            val attack = HashMap<Category, Int>()
+            val defend = HashMap<Category, Int>()
             Category.entries.forEach { category2 ->
                 val attackRate = getCategoryEffectivenessTo(category, category2)
                 if (attackRate != 0) {
-                    attack.add(CategoryEffectiveness.Rate(category2, attackRate))
+                    attack[category2] = attackRate
                 }
                 val defendRate = getCategoryEffectivenessTo(category2, category)
                 if (defendRate != 0) {
-                    defend.add(CategoryEffectiveness.Rate(category2, defendRate))
+                    defend[category2] = defendRate
                 }
             }
-            attack.sortByDescending { it.rateType }
-            defend.sortByDescending { it.rateType }
             CategoryEffectiveness(attack, defend)
         }
         .filterValues { it.attack.isNotEmpty() && it.defend.isNotEmpty() }
