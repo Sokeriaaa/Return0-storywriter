@@ -30,6 +30,8 @@ object SWEntities {
         baseAP = 120,
         functions = listOf(
             SWSkills.notify.functionData,
+            SWSkills.wait.functionData,
+            SWSkills.hashCode.functionData,
         ),
     )
 
@@ -44,6 +46,8 @@ object SWEntities {
         baseAP = 110,
         functions = listOf(
             SWSkills.forEach.functionData,
+            SWSkills.next.functionData,
+            SWSkills.remove.functionData,
         ),
         attackModifier = EntityData.GeneralAttackModifier(
             power = 10,
@@ -62,6 +66,7 @@ object SWEntities {
         baseAP = 130,
         functions = listOf(
             SWSkills.getProperty.functionData,
+            SWSkills.gc.functionData
         ),
     )
 

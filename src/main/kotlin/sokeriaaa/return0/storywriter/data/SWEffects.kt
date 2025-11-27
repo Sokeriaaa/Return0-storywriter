@@ -169,6 +169,8 @@ object SWEffects {
     data class EffectEntry(
         val simpleDescription: String,
         val effectData: EffectData,
-    )
+    ) {
+        val name get() = effectData.name
+    }
 
 }
