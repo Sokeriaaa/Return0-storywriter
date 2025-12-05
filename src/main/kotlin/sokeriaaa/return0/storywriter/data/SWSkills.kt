@@ -132,7 +132,7 @@ object SWSkills {
             growth = listOf(5, 15, 30, 45, 60),
             extra = CommonExtra.ForUser(
                 extra = CombatExtra.AttachEffect(
-                    name = SWEffects.asynced.name,
+                    name = SWEffects.async.name,
                     turns = Value(1),
                     tier = Value(5) + ActionValue.Tier,
                 )

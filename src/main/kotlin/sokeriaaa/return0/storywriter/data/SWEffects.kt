@@ -29,6 +29,7 @@ object SWEffects {
         simpleDescription = "Code optimization increases ATK.",
         effectData = EffectData(
             name = "optimize",
+            abbr = "ATK↑",
             isDebuff = false,
             modifiers = listOf(
                 EffectModifier(
@@ -44,6 +45,7 @@ object SWEffects {
         simpleDescription = "Stores repeated data, boosting DEF.",
         effectData = EffectData(
             name = "cached",
+            abbr = "DEF↑",
             isDebuff = false,
             modifiers = listOf(
                 EffectModifier(
@@ -55,10 +57,11 @@ object SWEffects {
         ),
     )
 
-    val asynced = EffectEntry(
+    val async = EffectEntry(
         simpleDescription = "Concurrent execution increases SPD.",
         effectData = EffectData(
-            name = "asynced",
+            name = "async",
+            abbr = "SPD↑",
             isDebuff = false,
             modifiers = listOf(
                 EffectModifier(
@@ -74,6 +77,7 @@ object SWEffects {
         simpleDescription = "Null reference error lowers ATK.",
         effectData = EffectData(
             name = "null_pointer",
+            abbr = "ATK↓",
             isDebuff = true,
             modifiers = listOf(
                 EffectModifier(
@@ -89,6 +93,7 @@ object SWEffects {
         simpleDescription = "Memory overflow reduces DEF.",
         effectData = EffectData(
             name = "overflowed",
+            abbr = "DEF↓",
             isDebuff = true,
             modifiers = listOf(
                 EffectModifier(
@@ -104,6 +109,7 @@ object SWEffects {
         simpleDescription = "IO Failures reduces SPD.",
         effectData = EffectData(
             name = "io_failure",
+            abbr = "SPD↓",
             isDebuff = true,
             modifiers = listOf(
                 EffectModifier(
@@ -122,6 +128,7 @@ object SWEffects {
         simpleDescription = "Bug infested, drains HP after each action.",
         effectData = EffectData(
             name = "bug_infested",
+            abbr = "BUG",
             isDebuff = true,
             extra = CombatExtra.HPChange(
                 // The target loses tier/32 of maxhp after each action.
@@ -134,6 +141,7 @@ object SWEffects {
         simpleDescription = "Refactoring the class, restores HP after each turn.",
         effectData = EffectData(
             name = "refactoring",
+            abbr = "REF",
             isDebuff = false,
             extra = CombatExtra.HPChange(
                 // The target restores tier/32 of maxhp after each action.
@@ -149,6 +157,7 @@ object SWEffects {
         simpleDescription = "Deadlocked, can not take actions.",
         effectData = EffectData(
             name = "deadlocked",
+            abbr = "LOCK",
             isDebuff = true,
             isFreeze = true
         )
@@ -157,7 +166,7 @@ object SWEffects {
     val values = listOf(
         optimize,
         cached,
-        asynced,
+        async,
         nullPointer,
         overflowed,
         ioFailure,
