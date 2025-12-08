@@ -66,7 +66,8 @@ object SWEntities {
         baseAP = 130,
         functions = listOf(
             SWSkills.getProperty.functionData,
-            SWSkills.gc.functionData
+            SWSkills.gc.functionData,
+            SWSkills.arraycopy.functionData,
         ),
     )
 

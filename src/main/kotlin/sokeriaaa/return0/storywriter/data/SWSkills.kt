@@ -14,14 +14,18 @@
  */
 package sokeriaaa.return0.storywriter.data
 
+import sokeriaaa.return0.shared.data.api.component.condition.IF
+import sokeriaaa.return0.shared.data.api.component.condition.gt
 import sokeriaaa.return0.shared.data.api.component.extra.extrasGroupOf
 import sokeriaaa.return0.shared.data.api.component.value.*
 import sokeriaaa.return0.shared.data.models.action.function.FunctionData
 import sokeriaaa.return0.shared.data.models.action.function.FunctionTarget
+import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.extras.CombatExtra
 import sokeriaaa.return0.shared.data.models.component.extras.CommonExtra
 import sokeriaaa.return0.shared.data.models.component.values.ActionValue
 import sokeriaaa.return0.shared.data.models.component.values.CombatValue
+import sokeriaaa.return0.shared.data.models.component.values.CommonValue
 import sokeriaaa.return0.shared.data.models.component.values.EntityValue
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 
@@ -196,6 +200,43 @@ object SWSkills {
         )
     )
 
+    val arraycopy = SkillEntry(
+        simpleDescription = "Perform an array copy. Lightly consumes your HP, " +
+                "then creates a shield lasts for 3 turns based on your MAXHP for a teammate. " +
+                "Has no effect when your HP is insufficient for consuming.",
+        functionData = FunctionData(
+            name = "arraycopy",
+            category = Category.MEMORY,
+            target = FunctionTarget.SingleTeamMate,
+            bullseye = false,
+            basePower = 0,
+            powerBonus = 0,
+            baseSPCost = 150,
+            spCostBonus = 25,
+            growth = listOf(10, 25, 45, 65, 85),
+            extra = run {
+                val hpConsumed = CommonValue.ForUser(EntityValue.MAXHP) * 0.1F
+                IF(CommonValue.ForUser(EntityValue.HP) gt hpConsumed)
+                    .then(
+                        ifTrue = extrasGroupOf(
+                            CombatExtra.AttachShield(
+                                key = "arraycopy",
+                                value = hpConsumed * (ActionValue.Tier * 0.2F + 0.8F),
+                                turns = Value(3),
+                            ),
+                            CommonExtra.ForUser(
+                                extra = CombatExtra.HPChange(
+                                    hpChange = -hpConsumed,
+                                    ignoresShield = CommonCondition.True,
+                                )
+                            )
+                        ),
+                        ifFalse = CombatExtra.NoEffect,
+                    )
+            }
+        )
+    )
+
     val values = listOf(
         notify,
         wait,
@@ -205,6 +246,7 @@ object SWSkills {
         remove,
         getProperty,
         gc,
+        arraycopy,
     )
 
     data class SkillEntry(
