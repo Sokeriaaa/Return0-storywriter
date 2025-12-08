@@ -17,6 +17,7 @@ package sokeriaaa.return0.storywriter.data
 import sokeriaaa.return0.shared.data.api.component.value.times
 import sokeriaaa.return0.shared.data.models.action.effect.EffectData
 import sokeriaaa.return0.shared.data.models.action.effect.EffectModifier
+import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.extras.CombatExtra
 import sokeriaaa.return0.shared.data.models.component.values.ActionValue
 import sokeriaaa.return0.shared.data.models.component.values.EntityValue
@@ -125,7 +126,7 @@ object SWEffects {
     // Extras
     //===================
     val bugInfested = EffectEntry(
-        simpleDescription = "Bug infested, drains HP after each action.",
+        simpleDescription = "Bug infested, drains HP after each action. Ignores shields.",
         effectData = EffectData(
             name = "bug_infested",
             abbr = "BUG",
@@ -133,6 +134,7 @@ object SWEffects {
             extra = CombatExtra.HPChange(
                 // The target loses tier/32 of maxhp after each action.
                 hpChange = EntityValue.HP * -0.03125F * ActionValue.Tier,
+                ignoresShield = CommonCondition.True,
             )
         )
     )
