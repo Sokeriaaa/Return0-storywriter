@@ -16,11 +16,13 @@ package sokeriaaa.return0.storywriter.data
 
 import sokeriaaa.return0.shared.data.models.entity.EntityData
 import sokeriaaa.return0.shared.data.models.entity.category.Category
+import sokeriaaa.return0.shared.data.models.entity.path.EntityPath
 
 object SWEntities {
 
     val `object` = EntityData(
         name = "Object",
+        path = EntityPath.HEAP,
         category = Category.CLASS,
         baseATK = 56,
         baseDEF = 27,
@@ -37,6 +39,7 @@ object SWEntities {
 
     val iterator = EntityData(
         name = "Iterator",
+        path = EntityPath.THREAD,
         category = Category.STREAM,
         baseATK = 73,
         baseDEF = 20,
@@ -57,6 +60,7 @@ object SWEntities {
 
     val system = EntityData(
         name = "System",
+        path = EntityPath.KERNEL,
         category = Category.MEMORY,
         baseATK = 50,
         baseDEF = 34,
