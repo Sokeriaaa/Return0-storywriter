@@ -75,10 +75,53 @@ object SWEntities {
         ),
     )
 
+    // Enemies: Easy
+    val nullptr = EntityData(
+        name = "Nullptr",
+        path = EntityPath.UNSPECIFIED,
+        category = Category.VOID,
+        baseATK = 37,
+        baseDEF = 16,
+        baseSPD = 22,
+        baseHP = 198,
+        baseSP = 150,
+        baseAP = 120,
+        functions = listOf()
+    )
+    val memoryLeak = EntityData(
+        name = "MemoryLeak",
+        path = EntityPath.UNSPECIFIED,
+        category = Category.MEMORY,
+        baseATK = 32,
+        baseDEF = 22,
+        baseSPD = 18,
+        baseHP = 257,
+        baseSP = 205,
+        baseAP = 120,
+        functions = listOf()
+    )
+    val indexOutOfBounds = EntityData(
+        name = "IndexOutOfBounds",
+        path = EntityPath.UNSPECIFIED,
+        category = Category.STREAM,
+        baseATK = 47,
+        baseDEF = 14,
+        baseSPD = 29,
+        baseHP = 175,
+        baseSP = 222,
+        baseAP = 100,
+        functions = listOf()
+    )
+
     val values = listOf(
+        // Party
         `object`,
         iterator,
         system,
+        // Enemy: Easy
+        nullptr,
+        memoryLeak,
+        indexOutOfBounds,
     )
 
 }

@@ -16,6 +16,7 @@ package sokeriaaa.return0.storywriter
 
 import sokeriaaa.return0.shared.common.helpers.JsonHelper.toJsonString
 import sokeriaaa.return0.storywriter.data.*
+import sokeriaaa.return0.storywriter.data.map.SWMaps
 import java.io.File
 
 fun main() {
@@ -24,6 +25,7 @@ fun main() {
     // Create folders.
     File("./output").mkdir()
     File("./output/data").mkdir()
+    File("./output/data/map").mkdir()
     File("./output/res").mkdir()
 
     // Output - Category: Entity growth
@@ -34,6 +36,11 @@ fun main() {
     File("./output/data/entity.json").writeText(SWEntities.values.toJsonString())
     // Output - Effect
     File("./output/data/effect.json").writeText(SWEffects.values.map { it.effectData }.toJsonString())
+
+    // Output - Maps
+    SWMaps.maps.forEach {
+        File("./output/data/map/${it.name}.json").writeText(it.toJsonString())
+    }
 
     // Prepare all descriptions
     SWEffects.values.forEach {
