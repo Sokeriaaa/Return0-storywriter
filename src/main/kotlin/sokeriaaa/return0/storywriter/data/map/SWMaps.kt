@@ -2,6 +2,7 @@ package sokeriaaa.return0.storywriter.data.map
 
 import sokeriaaa.return0.shared.data.models.story.event.Event
 import sokeriaaa.return0.shared.data.models.story.event.condition.EventCondition
+import sokeriaaa.return0.shared.data.models.story.event.value.EventValue
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.SWEntities
@@ -36,6 +37,7 @@ object SWMaps {
                         ),
                         Event.Choice(
                             "Save for now" to Event.RequestSave,
+                            "Move to line 10" to Event.MoveUserTo(EventValue.Constant(10)),
                             "Ping!" to Event.Text.NPC(
                                 nameRes = "println",
                                 messageRes = "Pong!",
