@@ -28,7 +28,24 @@ object SWMaps {
                     lineNumber = 1,
                     display = "println(\"Hello World!\")",
                     blocksUser = EventCondition.False,
-                    event = Event.Empty,
+                    event = Event.Sequence(
+                        // TODO use res
+                        Event.Text.NPC(
+                            nameRes = "println",
+                            messageRes = "Hello World!",
+                        ),
+                        Event.Choice(
+                            "Save for now" to Event.RequestSave,
+                            "Ping!" to Event.Text.NPC(
+                                nameRes = "println",
+                                messageRes = "Pong!",
+                            ),
+                            "Leave" to Event.Text.NPC(
+                                nameRes = "println",
+                                messageRes = "Have a nice day!",
+                            ),
+                        )
+                    ),
                 )
             ),
         )
