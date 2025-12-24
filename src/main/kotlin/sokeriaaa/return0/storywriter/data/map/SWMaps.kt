@@ -88,7 +88,21 @@ object SWMaps {
                             messageRes = "All the entities in the activated team have been recovered!.",
                         ),
                     ),
-                )
+                ),
+                MapEvent(
+                    enabled = EventCondition.True,
+                    trigger = MapEvent.Trigger.OVERLAPPED,
+                    lineNumber = 7,
+                    display = "debug()",
+                    blocksUser = EventCondition.False,
+                    event = Event.Sequence(
+                        // TODO use res
+                        Event.Text.NPC(
+                            nameRes = "debug",
+                            messageRes = "Debugging...",
+                        ),
+                    ),
+                ),
             ),
         )
     )
