@@ -48,6 +48,46 @@ object SWMaps {
                             ),
                         )
                     ),
+                ),
+                MapEvent(
+                    enabled = EventCondition.True,
+                    trigger = MapEvent.Trigger.INTERACTED,
+                    lineNumber = 5,
+                    display = "programmingTraining()",
+                    blocksUser = EventCondition.False,
+                    event = Event.Sequence(
+                        // TODO use res
+                        Event.Text.NPC(
+                            nameRes = "programmingTraining",
+                            messageRes = "Starting programming training.",
+                        ),
+                        Event.Choice(
+                            "Start" to Event.Combat(
+                                config = Event.Combat.Config(
+                                    enemies = listOf(
+                                        SWEntities.nullptr.name to EventValue.Constant(1),
+                                        SWEntities.memoryLeak.name to EventValue.Constant(1),
+                                        SWEntities.indexOutOfBounds.name to EventValue.Constant(1),
+                                    )
+                                )
+                            ),
+                            "Later" to Event.Empty,
+                        )
+                    ),
+                ),
+                MapEvent(
+                    enabled = EventCondition.True,
+                    trigger = MapEvent.Trigger.INTERACTED,
+                    lineNumber = 5,
+                    display = "recovery(allEntities)",
+                    blocksUser = EventCondition.False,
+                    event = Event.Sequence(
+                        // TODO use res
+                        Event.RecoverAll,
+                        Event.Text.Narrator(
+                            messageRes = "All the entities in the activated team have been recovered!.",
+                        ),
+                    ),
                 )
             ),
         )
