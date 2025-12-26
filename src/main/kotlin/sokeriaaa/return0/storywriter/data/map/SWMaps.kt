@@ -1,8 +1,8 @@
 package sokeriaaa.return0.storywriter.data.map
 
+import sokeriaaa.return0.shared.data.api.component.value.Value
+import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.story.event.Event
-import sokeriaaa.return0.shared.data.models.story.event.condition.EventCondition
-import sokeriaaa.return0.shared.data.models.story.event.value.EventValue
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.SWEntities
@@ -24,11 +24,11 @@ object SWMaps {
             difficulty = 1,
             events = listOf(
                 MapEvent(
-                    enabled = EventCondition.True,
+                    enabled = CommonCondition.True,
                     trigger = MapEvent.Trigger.INTERACTED,
                     lineNumber = 1,
                     display = "println(\"Hello World!\")",
-                    blocksUser = EventCondition.False,
+                    blocksUser = CommonCondition.False,
                     event = Event.Sequence(
                         // TODO use res
                         Event.Text.NPC(
@@ -37,7 +37,7 @@ object SWMaps {
                         ),
                         Event.Choice(
                             "Save for now" to Event.RequestSave,
-                            "Move to line 10" to Event.MoveUserTo(EventValue.Constant(10)),
+                            "Move to line 10" to Event.MoveUserTo(Value(10)),
                             "Ping!" to Event.Text.NPC(
                                 nameRes = "println",
                                 messageRes = "Pong!",
@@ -50,11 +50,11 @@ object SWMaps {
                     ),
                 ),
                 MapEvent(
-                    enabled = EventCondition.True,
+                    enabled = CommonCondition.True,
                     trigger = MapEvent.Trigger.INTERACTED,
                     lineNumber = 5,
                     display = "programmingTraining()",
-                    blocksUser = EventCondition.False,
+                    blocksUser = CommonCondition.False,
                     event = Event.Sequence(
                         // TODO use res
                         Event.Text.NPC(
@@ -65,9 +65,9 @@ object SWMaps {
                             "Start" to Event.Combat(
                                 config = Event.Combat.Config(
                                     enemies = listOf(
-                                        SWEntities.nullptr.name to EventValue.Constant(1),
-                                        SWEntities.memoryLeak.name to EventValue.Constant(1),
-                                        SWEntities.indexOutOfBounds.name to EventValue.Constant(1),
+                                        SWEntities.nullptr.name to Value(1),
+                                        SWEntities.memoryLeak.name to Value(1),
+                                        SWEntities.indexOutOfBounds.name to Value(1),
                                     )
                                 )
                             ),
@@ -76,11 +76,11 @@ object SWMaps {
                     ),
                 ),
                 MapEvent(
-                    enabled = EventCondition.True,
+                    enabled = CommonCondition.True,
                     trigger = MapEvent.Trigger.INTERACTED,
                     lineNumber = 5,
                     display = "recovery(allEntities)",
-                    blocksUser = EventCondition.False,
+                    blocksUser = CommonCondition.False,
                     event = Event.Sequence(
                         // TODO use res
                         Event.RecoverAll,
@@ -90,11 +90,11 @@ object SWMaps {
                     ),
                 ),
                 MapEvent(
-                    enabled = EventCondition.True,
+                    enabled = CommonCondition.True,
                     trigger = MapEvent.Trigger.OVERLAPPED,
                     lineNumber = 7,
                     display = "debug()",
-                    blocksUser = EventCondition.False,
+                    blocksUser = CommonCondition.False,
                     event = Event.Sequence(
                         // TODO use res
                         Event.Text.NPC(
