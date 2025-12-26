@@ -215,8 +215,8 @@ object SWSkills {
             spCostBonus = 25,
             growth = listOf(10, 25, 45, 65, 85),
             extra = run {
-                val hpConsumed = CommonValue.ForUser(EntityValue.MAXHP) * 0.1F
-                IF(CommonValue.ForUser(EntityValue.HP) gt hpConsumed)
+                val hpConsumed = (CombatValue.ForUser(EntityValue.MAXHP) * 0.1F)
+                IF(CombatValue.ForUser(EntityValue.HP) gt hpConsumed)
                     .then(
                         ifTrue = extrasGroupOf(
                             CombatExtra.AttachShield(
