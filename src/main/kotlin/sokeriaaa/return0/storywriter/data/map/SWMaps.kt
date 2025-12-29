@@ -103,6 +103,28 @@ object SWMaps {
                         ),
                     ),
                 ),
+                MapEvent(
+                    enabled = CommonCondition.True,
+                    trigger = MapEvent.Trigger.INTERACTED,
+                    lineNumber = 8,
+                    display = "crazyEvents()",
+                    blocksUser = CommonCondition.False,
+                    event = Event.Sequence(
+                        // TODO use res
+                        Event.HideMap,
+                        Event.Text.Narrator(
+                            messageRes = "Hide the map!",
+                        ),
+                        Event.ShowMap,
+                        Event.Text.Narrator(
+                            messageRes = "It shows again!",
+                        ),
+                        Event.ShakeMap,
+                        Event.Text.Narrator(
+                            messageRes = "Let's rock!",
+                        ),
+                    ),
+                ),
             ),
         )
     )
