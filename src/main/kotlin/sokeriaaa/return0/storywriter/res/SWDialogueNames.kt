@@ -14,27 +14,26 @@
  */
 package sokeriaaa.return0.storywriter.res
 
-import sokeriaaa.return0.storywriter.res.SWStrings.generatedValues
+/**
+ * Generate names for dialogues.
+ */
+object SWDialogueNames {
+    // Common
+    val unknown: String by lazy { create("???", "unknown") }
 
-object SWStrings {
+    // Matrix Corp.
+    val natalie: String by lazy { create("Natalie") }
+    val mark: String by lazy { create("Mark") }
+    val lawrence: String by lazy { create("Lawrence") }
 
-    val staticValues: Map<String, String> = mapOf()
+    // Parties
+    val `object`: String by lazy { create("object") }
 
-    val generatedValues: MutableMap<String, String> = HashMap()
-
-    /**
-     * Create a new entry for [generatedValues], then return the [res].
-     *
-     * Mainly used in events. Resources in items, functions and quests are auto-generated.
-     *
-     * If a same key is registered twice, the second one will replace the first.
-     */
-    fun create(
-        res: String,
-        value: String,
-    ): String {
-        generatedValues[res] = value
-        return res
-    }
-
+    private fun create(
+        name: String,
+        res: String = name.lowercase().replace(' ', '_').replace('-', '_'),
+    ) = SWStrings.create(
+        res = "dialogue.name.$res",
+        value = name
+    )
 }
