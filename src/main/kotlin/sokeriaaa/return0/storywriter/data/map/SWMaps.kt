@@ -6,6 +6,7 @@ import sokeriaaa.return0.shared.data.models.story.event.Event
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.SWEntities
+import sokeriaaa.return0.storywriter.res.SWStrings
 
 object SWMaps {
     val maps = listOf(
@@ -30,21 +31,44 @@ object SWMaps {
                     display = "println(\"Hello World!\")",
                     blocksUser = CommonCondition.False,
                     event = Event.Sequence(
-                        // TODO use res
                         Event.Text.NPC(
-                            nameRes = "println",
-                            messageRes = "Hello World!",
+                            nameRes = SWStrings.create(
+                                key = "name.println",
+                                value = "println",
+                            ),
+                            messageRes = SWStrings.create(
+                                key = "dialogue.hello_world",
+                                value = "Hello World!",
+                            ),
                         ),
                         Event.Choice(
-                            "Save for now" to Event.RequestSave,
-                            "Move to line 10" to Event.MoveUserTo(Value(10)),
-                            "Ping!" to Event.Text.NPC(
-                                nameRes = "println",
-                                messageRes = "Pong!",
+                            SWStrings.create(
+                                key = "dialogue.save",
+                                value = "Save for now",
+                            ) to Event.RequestSave,
+                            SWStrings.create(
+                                key = "dialogue.move",
+                                value = "Move to line 10",
+                            ) to Event.MoveUserTo(Value(10)),
+                            SWStrings.create(
+                                key = "dialogue.ping",
+                                value = "Ping!",
+                            ) to Event.Text.NPC(
+                                nameRes = "name.println",
+                                messageRes = SWStrings.create(
+                                    key = "dialogue.pong",
+                                    value = "Pong!",
+                                ),
                             ),
-                            "Leave" to Event.Text.NPC(
-                                nameRes = "println",
-                                messageRes = "Have a nice day!",
+                            SWStrings.create(
+                                key = "dialogue.leave",
+                                value = "Leave",
+                            ) to Event.Text.NPC(
+                                nameRes = "name.println",
+                                messageRes = SWStrings.create(
+                                    key = "dialogue.nice_day",
+                                    value = "Have a nice day!",
+                                ),
                             ),
                         )
                     ),
@@ -56,13 +80,21 @@ object SWMaps {
                     display = "programmingTraining()",
                     blocksUser = CommonCondition.False,
                     event = Event.Sequence(
-                        // TODO use res
                         Event.Text.NPC(
-                            nameRes = "programmingTraining",
-                            messageRes = "Starting programming training.",
+                            nameRes = SWStrings.create(
+                                key = "name.programming_training",
+                                value = "programmingTraining",
+                            ),
+                            messageRes = SWStrings.create(
+                                key = "dialogue.start_train",
+                                value = "Starting programming training.",
+                            ),
                         ),
                         Event.Choice(
-                            "Start" to Event.Combat(
+                            SWStrings.create(
+                                key = "dialogue.start",
+                                value = "Start",
+                            ) to Event.Combat(
                                 config = Event.Combat.Config(
                                     enemies = listOf(
                                         SWEntities.nullptr.name to Value(1),
@@ -71,7 +103,10 @@ object SWMaps {
                                     )
                                 )
                             ),
-                            "Later" to Event.Empty,
+                            SWStrings.create(
+                                key = "dialogue.later",
+                                value = "Later",
+                            ) to Event.Empty,
                         )
                     ),
                 ),
@@ -82,46 +117,12 @@ object SWMaps {
                     display = "recovery(allEntities)",
                     blocksUser = CommonCondition.False,
                     event = Event.Sequence(
-                        // TODO use res
                         Event.RecoverAll,
                         Event.Text.Narrator(
-                            messageRes = "All the entities in the activated team have been recovered!.",
-                        ),
-                    ),
-                ),
-                MapEvent(
-                    enabled = CommonCondition.True,
-                    trigger = MapEvent.Trigger.OVERLAPPED,
-                    lineNumber = 7,
-                    display = "debug()",
-                    blocksUser = CommonCondition.False,
-                    event = Event.Sequence(
-                        // TODO use res
-                        Event.Text.NPC(
-                            nameRes = "debug",
-                            messageRes = "Debugging...",
-                        ),
-                    ),
-                ),
-                MapEvent(
-                    enabled = CommonCondition.True,
-                    trigger = MapEvent.Trigger.INTERACTED,
-                    lineNumber = 8,
-                    display = "crazyEvents()",
-                    blocksUser = CommonCondition.False,
-                    event = Event.Sequence(
-                        // TODO use res
-                        Event.HideMap,
-                        Event.Text.Narrator(
-                            messageRes = "Hide the map!",
-                        ),
-                        Event.ShowMap,
-                        Event.Text.Narrator(
-                            messageRes = "It shows again!",
-                        ),
-                        Event.ShakeMap,
-                        Event.Text.Narrator(
-                            messageRes = "Let's rock!",
+                            messageRes = SWStrings.create(
+                                key = "dialogue.recover_all",
+                                value = "All the entities in the activated team have been recovered!.",
+                            )
                         ),
                     ),
                 ),
