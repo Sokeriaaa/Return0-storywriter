@@ -25,7 +25,9 @@ fun main() {
     // Create folders.
     File("./output").mkdir()
     File("./output/data").mkdir()
+    File("./output/data/inventory").mkdir()
     File("./output/data/map").mkdir()
+    File("./output/data/quest").mkdir()
     File("./output/res").mkdir()
 
     // Output - Category: Entity growth
