@@ -7,6 +7,7 @@ object SWMaps {
         main,
         matrix_corp,
         null_path,
+        null_view,
         silica_city,
     )
 }
