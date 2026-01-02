@@ -87,6 +87,8 @@ private val nullPathEvent01: MapEvent = MapEvent(
             narrator("then I can learn them."),
             narrator("And if something is broken —"),
             narrator("I can fix it."),
+            tips("Object had unlocked a function \"notify\". It can deal more damage than a normal attack.\nAccessible in the \"FUNCTION\" action."),
+            tips("Functions are powerful but consumes SP. When the SP runs out, the entities will have to use RELAX to recover SP."),
             Event.ShowMap,
             TeleportUserTo(
                 SWMaps.null_view.name,
