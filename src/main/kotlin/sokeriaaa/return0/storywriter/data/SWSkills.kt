@@ -25,7 +25,6 @@ import sokeriaaa.return0.shared.data.models.component.extras.CombatExtra
 import sokeriaaa.return0.shared.data.models.component.extras.CommonExtra
 import sokeriaaa.return0.shared.data.models.component.values.ActionValue
 import sokeriaaa.return0.shared.data.models.component.values.CombatValue
-import sokeriaaa.return0.shared.data.models.component.values.CommonValue
 import sokeriaaa.return0.shared.data.models.component.values.EntityValue
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 
@@ -93,6 +92,57 @@ object SWSkills {
             growth = listOf(15, 25, 40, 60, 80),
             attackModifier = FunctionData.AttackModifier(
                 actualPower = (Value(1) shl Value(0, 4)) * (ActionValue.Tier * 1 + 6)
+            )
+        ),
+    )
+
+    //===================
+    // Entity - StringBuilder
+    //===================
+    val append = SkillEntry(
+        simpleDescription = "Append a new string, deals light damage to a single target, lightly increase ATK for 2 turns (extendable).",
+        functionData = FunctionData(
+            name = "append",
+            category = Category.STREAM,
+            target = FunctionTarget.SingleEnemy,
+            bullseye = false,
+            basePower = 15,
+            powerBonus = 5,
+            baseSPCost = 50,
+            spCostBonus = 10,
+            growth = listOf(1, 10, 20, 35, 50, 70),
+            extra = CommonExtra.ForUser(
+                extra = CombatExtra.AttachEffect(
+                    name = SWEffects.optimize.name,
+                    turns = EntityValue.TurnsLeftOf(SWEffects.optimize.name) + 2,
+                    tier = ActionValue.Tier + 2,
+                ),
+            )
+        ),
+    )
+
+    val toString = SkillEntry(
+        simpleDescription = "Empty your current SP and the ATK increment, Deal huge damage to a single target, based on consumed SP and ATK increment.",
+        functionData = FunctionData(
+            name = "toString",
+            category = Category.STREAM,
+            target = FunctionTarget.SingleEnemy,
+            bullseye = false,
+            basePower = 0,
+            powerBonus = 0,
+            baseSPCost = 0,
+            spCostBonus = 0,
+            growth = listOf(),
+            attackModifier = FunctionData.AttackModifier(
+                actualPower = CombatValue.ForUser(
+                    (EntityValue.SP.pow(0.6F)) + (EntityValue.TurnsLeftOf(SWEffects.optimize.name) * 32)
+                ).coerceAtLeast(1)
+            ),
+            extra = CommonExtra.ForUser(
+                extra = extrasGroupOf(
+                    CombatExtra.SPChange(-EntityValue.SP),
+                    CombatExtra.RemoveEffect(SWEffects.optimize.name)
+                ),
             )
         ),
     )
@@ -237,16 +287,39 @@ object SWSkills {
         )
     )
 
+    //===================
+    // Shared
+    //===================
+    val delete = SkillEntry(
+        simpleDescription = "Chance to remove a single target's all shields. The higher HP rate target has, the higher chance to remove.",
+        functionData = FunctionData(
+            name = "delete",
+            category = Category.INTERFACE,
+            target = FunctionTarget.SingleEnemy,
+            bullseye = false,
+            basePower = 120,
+            powerBonus = 20,
+            baseSPCost = 200,
+            spCostBonus = 50,
+            growth = listOf(25, 55, 80),
+            extra = IF(CommonCondition.Chance(EntityValue.HPRate))
+                .then(CombatExtra.RemoveAllShields)
+        )
+    )
+
     val values = listOf(
         notify,
         wait,
         hashCode,
+        append,
+        toString,
         forEach,
         next,
         remove,
         getProperty,
         gc,
         arraycopy,
+        delete,
     )
 
     data class SkillEntry(

@@ -37,6 +37,23 @@ object SWEntities {
         ),
     )
 
+    val stringBuilder = EntityData(
+        name = "StringBuilder",
+        path = EntityPath.OVERCLOCK,
+        category = Category.STREAM,
+        baseATK = 64,
+        baseDEF = 22,
+        baseSPD = 33,
+        baseHP = 275,
+        baseSP = 303,
+        baseAP = 110,
+        functions = listOf(
+            SWSkills.append.functionData,
+            SWSkills.toString.functionData,
+            SWSkills.delete.functionData,
+        ),
+    )
+
     val iterator = EntityData(
         name = "Iterator",
         path = EntityPath.THREAD,
@@ -116,6 +133,7 @@ object SWEntities {
     val values = listOf(
         // Party
         `object`,
+        stringBuilder,
         iterator,
         system,
         // Enemy: Easy
