@@ -20,6 +20,7 @@ import sokeriaaa.return0.storywriter.data.SWEffects
 import sokeriaaa.return0.storywriter.data.SWEntities
 import sokeriaaa.return0.storywriter.data.SWSkills
 import sokeriaaa.return0.storywriter.data.map.SWMaps
+import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.res.SWStrings
 import java.io.File
 
@@ -46,6 +47,10 @@ fun main() {
     // Output - Maps
     SWMaps.maps.forEach {
         File("./output/data/map/${it.name}.json").writeText(it.toJsonString())
+    }
+    // Output - Quests
+    SWQuests.quests.forEach {
+        File("./output/data/quest/${it.key}.json").writeText(it.toJsonString())
     }
 
     // Prepare all descriptions

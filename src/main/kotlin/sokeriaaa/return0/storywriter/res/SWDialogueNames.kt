@@ -28,6 +28,7 @@ object SWDialogueNames {
 
     // Parties
     val `object`: String by lazy { create("Object") }
+    val stringbuilder: String by lazy { create("StringBuilder") }
 
     private fun create(
         name: String,
