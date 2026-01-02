@@ -6,6 +6,7 @@ object SWMaps {
         home_sweet_home,
         main,
         matrix_corp,
+        null_path,
         silica_city,
     )
 }

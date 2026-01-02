@@ -51,6 +51,26 @@ class DialogueResCounter(
         current++
         return SWDialogues.createNPC(currentRes, nameRes, dialogue)
     }
+
+    /**
+     * Generate an auto-resourced [Event.Tips] in this scope.
+     *
+     * @see SWDialogues.createTips
+     */
+    fun tips(dialogue: String): Event.Tips {
+        current++
+        return SWDialogues.createTips(currentRes, dialogue)
+    }
+
+    /**
+     * Generate an auto-resourced simple string in this scope.
+     *
+     * @see SWDialogues.createText
+     */
+    fun text(text: String): String {
+        current++
+        return SWDialogues.createText(currentRes, text)
+    }
 }
 
 inline fun <reified T> dialogueResCounter(

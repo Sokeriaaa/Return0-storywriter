@@ -27,7 +27,7 @@ object SWDialogueNames {
     val lawrence: String by lazy { create("Lawrence") }
 
     // Parties
-    val `object`: String by lazy { create("object") }
+    val `object`: String by lazy { create("Object") }
 
     private fun create(
         name: String,

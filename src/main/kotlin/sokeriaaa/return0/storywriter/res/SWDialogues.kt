@@ -27,7 +27,7 @@ object SWDialogues {
      * The key value pair will be saved automatically in [SWStrings] for outputting.
      */
     fun createNarrator(res: String, dialogue: String) = Event.Text.Narrator(
-        messageRes = create(res, dialogue)
+        messageRes = createText(res, dialogue)
     )
 
     /**
@@ -36,7 +36,7 @@ object SWDialogues {
      * The key value pair will be saved automatically in [SWStrings] for outputting.
      */
     fun createUser(res: String, dialogue: String) = Event.Text.User(
-        messageRes = create(res, dialogue)
+        messageRes = createText(res, dialogue)
     )
 
     /**
@@ -46,10 +46,22 @@ object SWDialogues {
      */
     fun createNPC(res: String, nameRes: String, dialogue: String) = Event.Text.NPC(
         nameRes = nameRes,
-        messageRes = create(res, dialogue)
+        messageRes = createText(res, dialogue)
     )
 
-    private fun create(
+    /**
+     * Create a [Event.Tips] with specified resource key and string value.
+     *
+     * The key value pair will be saved automatically in [SWStrings] for outputting.
+     */
+    fun createTips(res: String, dialogue: String) = Event.Tips(
+        tipsRes = createText(res, dialogue)
+    )
+
+    /**
+     * Create a normal string with specified resource key generated.
+     */
+    fun createText(
         res: String,
         value: String,
     ): String = SWStrings.create(
