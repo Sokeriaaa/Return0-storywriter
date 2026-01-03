@@ -17,6 +17,8 @@ package sokeriaaa.return0.storywriter.data
 import sokeriaaa.return0.shared.data.models.entity.EntityData
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 import sokeriaaa.return0.shared.data.models.entity.path.EntityPath
+import sokeriaaa.return0.storywriter.data.skill.SWSkills
+import sokeriaaa.return0.storywriter.data.skill.SWSkillsCommon
 
 object SWEntities {
 
@@ -130,6 +132,24 @@ object SWEntities {
         functions = listOf()
     )
 
+    // Enemies: Elite
+    val leakFragment = EntityData(
+        name = "LeakFragment",
+        path = EntityPath.UNSPECIFIED,
+        category = Category.MEMORY,
+        baseATK = 35,
+        baseDEF = 24,
+        baseSPD = 20,
+        baseHP = 283,
+        baseSP = 225,
+        baseAP = 120,
+        functions = listOf(
+            SWSkillsCommon.getGeneralAttackSkill(Category.MEMORY, 0).functionData,
+            SWSkillsCommon.getGeneralAttackSkill(Category.MEMORY, 1).functionData,
+            SWSkills.leak.functionData,
+        )
+    )
+
     val values = listOf(
         // Party
         `object`,
@@ -140,6 +160,8 @@ object SWEntities {
         nullptr,
         memoryLeak,
         indexOutOfBounds,
+        // Enemies: Elite
+        leakFragment,
     )
 
 }

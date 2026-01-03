@@ -133,7 +133,7 @@ object SWEffects {
             isDebuff = true,
             extra = CombatExtra.HPChange(
                 // The target loses tier/32 of maxhp after each action.
-                hpChange = EntityValue.HP * -0.03125F * ActionValue.Tier,
+                hpChange = EntityValue.MAXHP * -0.03125F * ActionValue.Tier,
                 ignoresShield = CommonCondition.True,
             )
         )
@@ -147,7 +147,7 @@ object SWEffects {
             isDebuff = false,
             extra = CombatExtra.HPChange(
                 // The target restores tier/32 of maxhp after each action.
-                hpChange = EntityValue.HP * 0.03125F * ActionValue.Tier,
+                hpChange = EntityValue.MAXHP * 0.03125F * ActionValue.Tier,
             )
         )
     )

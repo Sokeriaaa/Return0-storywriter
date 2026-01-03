@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU Affero General Public License along with this program.
  * If not, see <https://www.gnu.org/licenses/>.
  */
-package sokeriaaa.return0.storywriter.data
+package sokeriaaa.return0.storywriter.data.skill
 
 import sokeriaaa.return0.shared.data.api.component.condition.IF
 import sokeriaaa.return0.shared.data.api.component.condition.gt
@@ -27,7 +27,22 @@ import sokeriaaa.return0.shared.data.models.component.values.ActionValue
 import sokeriaaa.return0.shared.data.models.component.values.CombatValue
 import sokeriaaa.return0.shared.data.models.component.values.EntityValue
 import sokeriaaa.return0.shared.data.models.entity.category.Category
+import sokeriaaa.return0.storywriter.data.SWEffects
 
+/**
+ * Copyright (C) 2025 Sokeriaaa
+ *
+ * This program is free software: you can redistribute it and/or modify it under the terms of
+ * the GNU Affero General Public License as published by the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * See the GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ */
 object SWSkills {
 
     //===================
@@ -288,6 +303,29 @@ object SWSkills {
     )
 
     //===================
+    // Enemy
+    //===================
+    val leak = SkillEntry(
+        simpleDescription = "Leak the memory. Let the target lose HP after each action in limited turns.",
+        functionData = FunctionData(
+            name = "leak",
+            category = Category.MEMORY,
+            target = FunctionTarget.SingleEnemy,
+            bullseye = false,
+            basePower = 20,
+            powerBonus = 10,
+            baseSPCost = 40,
+            spCostBonus = 20,
+            growth = listOf(1, 20, 40, 70),
+            extra = CombatExtra.AttachEffect(
+                name = SWEffects.bugInfested.name,
+                turns = ActionValue.Tier + 1,
+                tier = Value(1),
+            )
+        )
+    )
+
+    //===================
     // Shared
     //===================
     val delete = SkillEntry(
@@ -320,6 +358,15 @@ object SWSkills {
         gc,
         arraycopy,
         delete,
+        // All general attack skills.
+        *Category.entries
+            .asSequence()
+            .filter { it != Category.ITEM && it != Category.NORMAL }
+            .flatMap { category ->
+                sequenceOf(0, 1, 2).map { SWSkillsCommon.getGeneralAttackSkill(category, it) }
+            }
+            .toList()
+            .toTypedArray()
     )
 
     data class SkillEntry(
