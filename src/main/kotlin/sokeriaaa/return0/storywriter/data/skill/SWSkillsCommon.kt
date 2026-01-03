@@ -65,14 +65,14 @@ object SWSkillsCommon {
                 name = attackNames[category]!![type],
                 target = FunctionTarget.SingleEnemy,
                 bullseye = false,
-                basePower = type * 80 + 40,
-                powerBonus = type * 40 + 20,
+                basePower = type * 60 + 40,
+                powerBonus = type * 30 + 20,
                 baseSPCost = type * 60 + 30,
                 spCostBonus = type * 30 + 15,
                 growth = when (type) {
-                    0 -> listOf(1, 10, 30)
-                    1 -> listOf(20, 35, 50)
-                    2 -> listOf(40, 60, 80)
+                    0 -> listOf(5, 15, 30)
+                    1 -> listOf(20, 35, 50, 70)
+                    2 -> listOf(30, 45, 60, 75, 90)
                     else -> error("")
                 },
             )

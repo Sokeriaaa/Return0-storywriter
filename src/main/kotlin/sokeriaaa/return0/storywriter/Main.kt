@@ -17,10 +17,10 @@ package sokeriaaa.return0.storywriter
 import sokeriaaa.return0.shared.common.helpers.JsonHelper.toJsonString
 import sokeriaaa.return0.storywriter.data.SWCategories
 import sokeriaaa.return0.storywriter.data.SWEffects
-import sokeriaaa.return0.storywriter.data.SWEntities
-import sokeriaaa.return0.storywriter.data.skill.SWSkills
+import sokeriaaa.return0.storywriter.data.entities.SWEntities
 import sokeriaaa.return0.storywriter.data.map.SWMaps
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
+import sokeriaaa.return0.storywriter.data.skill.SWSkills
 import sokeriaaa.return0.storywriter.res.SWStrings
 import java.io.File
 

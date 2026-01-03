@@ -4,11 +4,13 @@ import sokeriaaa.return0.shared.data.api.component.condition.not
 import sokeriaaa.return0.shared.data.api.component.value.Value
 import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.conditions.EventCondition
+import sokeriaaa.return0.shared.data.models.entity.category.Category
 import sokeriaaa.return0.shared.data.models.story.event.Event
 import sokeriaaa.return0.shared.data.models.story.event.Event.TeleportUserTo
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
-import sokeriaaa.return0.storywriter.data.SWEntities
+import sokeriaaa.return0.storywriter.data.entities.SWEntities
+import sokeriaaa.return0.storywriter.data.entities.SWEntitiesCommon
 import sokeriaaa.return0.storywriter.res.SWDialogueNames.`object`
 import sokeriaaa.return0.storywriter.utils.dialogueResCounter
 
@@ -60,7 +62,8 @@ private val nullPathEvent01: MapEvent = MapEvent(
             Event.Combat(
                 config = Event.Combat.Config(
                     enemies = listOf(
-                        SWEntities.nullptr.name to Value(1),
+                        // Nullptr
+                        SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name to Value(1),
                     ),
                     // Let the object level up to 2 after this combat.
                     difficulty = 4F,

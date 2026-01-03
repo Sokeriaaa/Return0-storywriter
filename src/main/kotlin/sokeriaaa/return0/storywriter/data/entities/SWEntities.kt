@@ -12,13 +12,12 @@
  * You should have received a copy of the GNU Affero General Public License along with this program.
  * If not, see <https://www.gnu.org/licenses/>.
  */
-package sokeriaaa.return0.storywriter.data
+package sokeriaaa.return0.storywriter.data.entities
 
 import sokeriaaa.return0.shared.data.models.entity.EntityData
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 import sokeriaaa.return0.shared.data.models.entity.path.EntityPath
 import sokeriaaa.return0.storywriter.data.skill.SWSkills
-import sokeriaaa.return0.storywriter.data.skill.SWSkillsCommon
 
 object SWEntities {
 
@@ -94,74 +93,21 @@ object SWEntities {
         ),
     )
 
-    // Enemies: Easy
-    val nullptr = EntityData(
-        name = "Nullptr",
-        path = EntityPath.UNSPECIFIED,
-        category = Category.VOID,
-        baseATK = 37,
-        baseDEF = 16,
-        baseSPD = 22,
-        baseHP = 198,
-        baseSP = 150,
-        baseAP = 120,
-        functions = listOf()
-    )
-    val memoryLeak = EntityData(
-        name = "MemoryLeak",
-        path = EntityPath.UNSPECIFIED,
-        category = Category.MEMORY,
-        baseATK = 32,
-        baseDEF = 22,
-        baseSPD = 18,
-        baseHP = 257,
-        baseSP = 205,
-        baseAP = 120,
-        functions = listOf()
-    )
-    val indexOutOfBounds = EntityData(
-        name = "IndexOutOfBounds",
-        path = EntityPath.UNSPECIFIED,
-        category = Category.STREAM,
-        baseATK = 47,
-        baseDEF = 14,
-        baseSPD = 29,
-        baseHP = 175,
-        baseSP = 222,
-        baseAP = 100,
-        functions = listOf()
-    )
-
-    // Enemies: Elite
-    val leakFragment = EntityData(
-        name = "LeakFragment",
-        path = EntityPath.UNSPECIFIED,
-        category = Category.MEMORY,
-        baseATK = 35,
-        baseDEF = 24,
-        baseSPD = 20,
-        baseHP = 283,
-        baseSP = 225,
-        baseAP = 120,
-        functions = listOf(
-            SWSkillsCommon.getGeneralAttackSkill(Category.MEMORY, 0).functionData,
-            SWSkillsCommon.getGeneralAttackSkill(Category.MEMORY, 1).functionData,
-            SWSkills.leak.functionData,
-        )
-    )
-
     val values = listOf(
         // Party
         `object`,
         stringBuilder,
         iterator,
         system,
-        // Enemy: Easy
-        nullptr,
-        memoryLeak,
-        indexOutOfBounds,
-        // Enemies: Elite
-        leakFragment,
+        // Enemy: Common & Elite
+        *Category.entries
+            .asSequence()
+            .filter { it != Category.ITEM && it != Category.NORMAL }
+            .flatMap { category ->
+                sequenceOf(0, 1, 2).map { SWEntitiesCommon.getCommonEnemy(category, it) }
+            }
+            .toList()
+            .toTypedArray(),
     )
 
 }

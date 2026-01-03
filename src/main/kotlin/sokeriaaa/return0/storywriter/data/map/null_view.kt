@@ -9,7 +9,7 @@ import sokeriaaa.return0.shared.data.models.story.event.Event
 import sokeriaaa.return0.shared.data.models.story.event.Event.TeleportUserTo
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
-import sokeriaaa.return0.storywriter.data.SWEntities
+import sokeriaaa.return0.storywriter.data.entities.SWEntities
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.res.SWDialogueNames.`object`
 import sokeriaaa.return0.storywriter.res.SWDialogueNames.stringbuilder
