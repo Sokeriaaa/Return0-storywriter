@@ -9,5 +9,6 @@ object SWMaps {
         null_path,
         null_view,
         silica_city,
+        stack_frame_ruins,
     )
 }

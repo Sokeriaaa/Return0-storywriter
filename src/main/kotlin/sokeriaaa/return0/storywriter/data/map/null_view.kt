@@ -2,9 +2,11 @@ package sokeriaaa.return0.storywriter.data.map
 
 import sokeriaaa.return0.shared.data.api.component.condition.and
 import sokeriaaa.return0.shared.data.api.component.condition.not
+import sokeriaaa.return0.shared.data.api.component.value.Value
 import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.conditions.EventCondition
 import sokeriaaa.return0.shared.data.models.story.event.Event
+import sokeriaaa.return0.shared.data.models.story.event.Event.TeleportUserTo
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.SWEntities
@@ -25,6 +27,7 @@ val SWMaps.null_view: MapData
         events = listOf(
             nullViewEvent01,
             stringBuilder1,
+            stackFrameRuinsEvent,
         )
     )
 
@@ -158,6 +161,11 @@ private val stringBuilder1: MapEvent = MapEvent(
             narrator("If this world runs on rules..."),
             narrator("then maybe trust is just another contract."),
             Event.ShowMap,
+            user("Alright."),
+            user("Let's go to syntaxis."),
+            npc(stringbuilder, "Execution prepared."),
+            npc(`object`, "Proceed carefully, Ada Null."),
+            npc(`object`, "Every step forward... allocates consequence."),
             tips("StringBuilder has joined your team.\n\nThis entity can deal high burst damage but need preparation and it's not suitable for long periods of combat.\nStack buff by \"append\" then unleash burst damage by \"toString\" and this will empty StringBuilder's SP."),
 
             Event.ObtainEntity(SWEntities.stringBuilder.name),
@@ -167,4 +175,15 @@ private val stringBuilder1: MapEvent = MapEvent(
             Event.RefreshEvents,
         )
     },
+)
+
+private val stackFrameRuinsEvent: MapEvent = MapEvent(
+    enabled = EventCondition.SavedSwitch("string_builder_indexed"),
+    trigger = MapEvent.Trigger.INTERACTED,
+    lineNumber = 42,
+    display = "moveTo(stack_frame_ruins)",
+    event = TeleportUserTo(
+        SWMaps.stack_frame_ruins.name,
+        Value(1),
+    ),
 )
