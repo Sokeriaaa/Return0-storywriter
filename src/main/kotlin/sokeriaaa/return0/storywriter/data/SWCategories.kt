@@ -42,11 +42,11 @@ object SWCategories {
             )
 
             Category.REFLECT -> EntityGrowth(
-                atkGrowth = 0.29F,
+                atkGrowth = 0.27F,
                 defGrowth = 0.26F,
-                spdGrowth = 0.20F,
+                spdGrowth = 0.21F,
                 hpGrowth = 0.27F,
-                spGrowth = 0.23F,
+                spGrowth = 0.24F,
             )
 
             Category.CONCURRENT -> EntityGrowth(
@@ -74,11 +74,11 @@ object SWCategories {
             )
 
             Category.EXCEPTION -> EntityGrowth(
-                atkGrowth = 0.29F,
+                atkGrowth = 0.28F,
                 defGrowth = 0.21F,
                 spdGrowth = 0.28F,
                 hpGrowth = 0.20F,
-                spGrowth = 0.27F,
+                spGrowth = 0.28F,
             )
 
             Category.SECURITY -> EntityGrowth(
