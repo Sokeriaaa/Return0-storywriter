@@ -11,8 +11,8 @@ import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
-import sokeriaaa.return0.storywriter.res.SWDialogueNames.`object`
-import sokeriaaa.return0.storywriter.res.SWDialogueNames.stringbuilder
+import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.`object`
+import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.stringbuilder
 import sokeriaaa.return0.storywriter.utils.dialogueResCounter
 
 

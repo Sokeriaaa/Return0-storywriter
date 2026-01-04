@@ -20,7 +20,7 @@ import sokeriaaa.return0.shared.data.models.story.event.Event
 import sokeriaaa.return0.shared.data.models.story.event.Event.TeleportUserTo
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
-import sokeriaaa.return0.storywriter.res.SWDialogueNames.unknown
+import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.unknown
 import sokeriaaa.return0.storywriter.utils.dialogueResCounter
 
 @Suppress("UnusedReceiverParameter")

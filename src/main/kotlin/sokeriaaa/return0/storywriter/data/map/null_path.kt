@@ -11,7 +11,7 @@ import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
 import sokeriaaa.return0.storywriter.data.entities.SWEntitiesCommon
-import sokeriaaa.return0.storywriter.res.SWDialogueNames.`object`
+import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.`object`
 import sokeriaaa.return0.storywriter.utils.dialogueResCounter
 
 @Suppress("UnusedReceiverParameter")
