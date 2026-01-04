@@ -18,6 +18,7 @@ import sokeriaaa.return0.shared.common.helpers.JsonHelper.toJsonString
 import sokeriaaa.return0.storywriter.data.SWCategories
 import sokeriaaa.return0.storywriter.data.SWEffects
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
+import sokeriaaa.return0.storywriter.data.inventory.SWInventories
 import sokeriaaa.return0.storywriter.data.map.SWMaps
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.data.skill.SWSkills
@@ -47,6 +48,10 @@ fun main() {
     // Output - Maps
     SWMaps.maps.forEach {
         File("./output/data/map/${it.name}.json").writeText(it.toJsonString())
+    }
+    // Output - Inventories
+    SWInventories.inventories.forEach {
+        File("./output/data/inventory/${it.key}.json").writeText(it.toJsonString())
     }
     // Output - Quests
     SWQuests.quests.forEach {
