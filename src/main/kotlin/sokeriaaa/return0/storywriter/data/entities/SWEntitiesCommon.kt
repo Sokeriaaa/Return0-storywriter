@@ -80,11 +80,9 @@ object SWEntitiesCommon {
             baseSP = ((200 + 100 * type) * (growth.spGrowth + 0.25F)).roundToInt(),
             baseAP = 120 + type * 20,
             functions = getCommonFunctionSet(category, type),
+            dropTable = getCommonDropTable(category, type),
         )
     }
-
-    fun getCommonDropTableEntry(category: Category, type: Int): Pair<String, EntityDropTable> =
-        generalEnemies[category]!![type] to getCommonDropTable(category, type)
 
     private fun getCommonDropTable(category: Category, type: Int): EntityDropTable {
         val index = type * Category.entries.size + category.ordinal

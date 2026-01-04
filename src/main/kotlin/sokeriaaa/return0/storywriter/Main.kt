@@ -18,7 +18,6 @@ import sokeriaaa.return0.shared.common.helpers.JsonHelper.toJsonString
 import sokeriaaa.return0.storywriter.data.SWCategories
 import sokeriaaa.return0.storywriter.data.SWEffects
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
-import sokeriaaa.return0.storywriter.data.entities.SWEntitiesDropTable
 import sokeriaaa.return0.storywriter.data.inventory.SWInventories
 import sokeriaaa.return0.storywriter.data.map.SWMaps
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
@@ -33,7 +32,6 @@ fun main() {
     File("./output").mkdir()
     File("./output/data").mkdir()
     File("./output/data/entity").mkdir()
-    File("./output/data/entity/drop_table").mkdir()
     File("./output/data/inventory").mkdir()
     File("./output/data/map").mkdir()
     File("./output/data/quest").mkdir()
@@ -45,10 +43,6 @@ fun main() {
     File("./output/data/category_effectiveness.json").writeText(SWCategories.categoryEffectivenessTable.toJsonString())
     // Output - Entity
     File("./output/data/entity.json").writeText(SWEntities.values.toJsonString())
-    // Output - Entity: DropTables
-    SWEntitiesDropTable.values.forEach { (string, table) ->
-        File("./output/data/entity/drop_table/${string}.json").writeText(table.toJsonString())
-    }
     // Output - Effect
     File("./output/data/effect.json").writeText(SWEffects.values.map { it.effectData }.toJsonString())
 
