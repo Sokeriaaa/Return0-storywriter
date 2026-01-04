@@ -299,5 +299,29 @@ object SWInventoriesCommonMaterials {
         )
     }
 
+    fun getGeneralMaterialSetByIndex(index: Int): List<GeneralMaterial> {
+        require(index in 0..49) {
+            "Index must be between 0 and 49. current: $index"
+        }
+        return when (index) {
+            in 0..24 -> {
+                listOf(
+                    GeneralMaterial.entries[index / 5],
+                    GeneralMaterial.entries[(index % 5) + 5],
+                )
+            }
+
+            in 25..49 -> {
+                val i = index - 25
+                listOf(
+                    GeneralMaterial.entries[(i / 5) * 2],
+                    GeneralMaterial.entries[(i % 5) * 2 + 1],
+                )
+            }
+
+            else -> error("")
+        }
+    }
+
 
 }

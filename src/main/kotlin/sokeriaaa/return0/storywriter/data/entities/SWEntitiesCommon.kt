@@ -16,9 +16,12 @@ package sokeriaaa.return0.storywriter.data.entities
 
 import sokeriaaa.return0.shared.data.models.action.function.FunctionData
 import sokeriaaa.return0.shared.data.models.entity.EntityData
+import sokeriaaa.return0.shared.data.models.entity.EntityDropTable
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 import sokeriaaa.return0.shared.data.models.entity.path.EntityPath
 import sokeriaaa.return0.storywriter.data.SWCategories
+import sokeriaaa.return0.storywriter.data.inventory.GeneralMaterial
+import sokeriaaa.return0.storywriter.data.inventory.SWInventoriesCommonMaterials
 import sokeriaaa.return0.storywriter.data.skill.SWSkillsCommon
 import kotlin.math.roundToInt
 
@@ -77,6 +80,75 @@ object SWEntitiesCommon {
             baseSP = ((200 + 100 * type) * (growth.spGrowth + 0.25F)).roundToInt(),
             baseAP = 120 + type * 20,
             functions = getCommonFunctionSet(category, type),
+        )
+    }
+
+    fun getCommonDropTableEntry(category: Category, type: Int): Pair<String, EntityDropTable> =
+        generalEnemies[category]!![type] to getCommonDropTable(category, type)
+
+    private fun getCommonDropTable(category: Category, type: Int): EntityDropTable {
+        val index = type * Category.entries.size + category.ordinal
+        val materialSets = SWInventoriesCommonMaterials.getGeneralMaterialSetByIndex(index)
+
+        fun keyOf(material: GeneralMaterial, tier: Int): String {
+            return SWInventoriesCommonMaterials.getGeneralMaterial(type = material, tier = tier).key
+        }
+
+        return EntityDropTable(
+            value = materialSets.flatMap { material ->
+                when (type) {
+                    0 -> listOf(
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 1),
+                            levelBonus = 0.025F,
+                        ),
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 0),
+                            base = 1.5F,
+                            levelBonus = 0.05F,
+                        ),
+                    )
+
+                    1 -> listOf(
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 2),
+                            levelBonus = 0.01F,
+                        ),
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 1),
+                            levelBonus = 0.03F,
+                        ),
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 0),
+                            base = 2F,
+                            levelBonus = 0.06F,
+                        ),
+                    )
+
+                    2 -> listOf(
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 3),
+                            levelBonus = 0.01F,
+                        ),
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 2),
+                            levelBonus = 0.03F,
+                        ),
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 1),
+                            base = 2F,
+                            levelBonus = 0.04F,
+                        ),
+                        EntityDropTable.DropEntry(
+                            itemKey = keyOf(material, 1),
+                            base = 4F,
+                            levelBonus = 0.07F,
+                        ),
+                    )
+
+                    else -> error("")
+                }
+            }
         )
     }
 
