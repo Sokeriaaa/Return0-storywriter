@@ -52,11 +52,11 @@ object SWQuests {
     ): QuestData = QuestData(
         key = key,
         nameRes = SWStrings.create(
-            "name.quest.$key",
+            "quest.$key",
             name,
         ),
         descriptionRes = SWStrings.create(
-            "desc.quest.$key",
+            "quest.$key.desc",
             description,
         ),
         priority = priority,

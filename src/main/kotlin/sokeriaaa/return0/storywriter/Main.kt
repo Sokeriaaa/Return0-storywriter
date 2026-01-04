@@ -60,10 +60,10 @@ fun main() {
 
     // Prepare all descriptions
     SWEffects.values.forEach {
-        SWStrings.generatedValues["desc.effect.${it.effectData.name}"] = it.simpleDescription
+        SWStrings.generatedValues["effect.${it.effectData.name}.desc"] = it.simpleDescription
     }
     SWSkills.values.forEach {
-        SWStrings.generatedValues["desc.skill.${it.functionData.name}"] = it.simpleDescription
+        SWStrings.generatedValues["skill.${it.functionData.name}.desc"] = it.simpleDescription
     }
     // Output - strings
     File("./output/res/strings.json").writeText(
