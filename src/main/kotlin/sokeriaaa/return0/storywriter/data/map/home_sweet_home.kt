@@ -17,7 +17,6 @@ val SWMaps.home_sweet_home: MapData
         lines = 0,
         buggyRange = emptyList(),
         buggyEntries = emptyList(),
-        difficulty = 1,
         events = listOf(
             homeEvent,
         )

@@ -32,7 +32,6 @@ val SWMaps.matrix_corp: MapData
         lines = 11,
         buggyRange = emptyList(),
         buggyEntries = emptyList(),
-        difficulty = 1,
         events = listOf(
             matrixCorpEvent,
             simpleEvent(1, "// Welcome to return 0;"),

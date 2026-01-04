@@ -23,7 +23,6 @@ val SWMaps.null_view: MapData
         lines = 42,
         buggyRange = emptyList(),
         buggyEntries = emptyList(),
-        difficulty = 1,
         events = listOf(
             nullViewEvent01,
             stringBuilder1,

@@ -32,7 +32,6 @@ val SWMaps.main: MapData
         lines = 100,
         buggyRange = emptyList(),
         buggyEntries = emptyList(),
-        difficulty = 1,
         events = listOf(
             mainEvent01,
             objectEvent,

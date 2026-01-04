@@ -21,7 +21,6 @@ val SWMaps.null_path: MapData
         lines = 6,
         buggyRange = emptyList(),
         buggyEntries = emptyList(),
-        difficulty = 1,
         events = listOf(
             nullPathEvent01,
             objectEvent,

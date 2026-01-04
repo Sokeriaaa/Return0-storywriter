@@ -22,22 +22,24 @@ val SWMaps.stack_frame_ruins: MapData
                 listOf(
                     SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name,
                     SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name
-                )
+                ),
+                difficulty = 1,
             ),
             MapData.BuggyEntry(
                 listOf(
                     SWEntitiesCommon.getCommonEnemy(Category.MEMORY, 0).name,
                     SWEntitiesCommon.getCommonEnemy(Category.MEMORY, 0).name
-                )
+                ),
+                difficulty = 1,
             ),
             MapData.BuggyEntry(
                 listOf(
                     SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name,
                     SWEntitiesCommon.getCommonEnemy(Category.MEMORY, 0).name
-                )
+                ),
+                difficulty = 1,
             ),
         ),
-        difficulty = 1,
         events = listOf(
             navigateUpEvent,
         )

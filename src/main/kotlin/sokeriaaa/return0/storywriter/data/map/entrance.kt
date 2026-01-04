@@ -27,7 +27,6 @@ val SWMaps.entrance: MapData
         lines = 0,
         buggyRange = emptyList(),
         buggyEntries = emptyList(),
-        difficulty = 1,
         events = listOf(entranceEvent)
     )
 
