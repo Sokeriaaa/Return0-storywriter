@@ -1,9 +1,14 @@
 package sokeriaaa.return0.storywriter.data.map
 
+import sokeriaaa.return0.shared.common.helpers.TimeHelper
+import sokeriaaa.return0.shared.data.api.component.condition.IF
 import sokeriaaa.return0.shared.data.api.component.condition.not
 import sokeriaaa.return0.shared.data.api.component.value.Value
+import sokeriaaa.return0.shared.data.models.component.common.Comparator
 import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.conditions.EventCondition
+import sokeriaaa.return0.shared.data.models.component.values.EventValue
+import sokeriaaa.return0.shared.data.models.component.values.TimeValue
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 import sokeriaaa.return0.shared.data.models.story.event.Event
 import sokeriaaa.return0.shared.data.models.story.event.Event.TeleportUserTo
@@ -50,6 +55,7 @@ val SWMaps.stack_frame_ruins: MapData
         events = listOf(
             navigateUpEvent,
             stackFrameRuins01,
+            enemy01,
         )
     )
 
@@ -63,6 +69,7 @@ private val navigateUpEvent: MapEvent = MapEvent(
         Value(42),
     ),
 )
+
 private val stackFrameRuins01: MapEvent = MapEvent(
     enabled = !EventCondition.QuestCompleted(SWQuests.c01_journey_start.key),
     trigger = MapEvent.Trigger.ENTERED,
@@ -115,4 +122,31 @@ private val stackFrameRuins01: MapEvent = MapEvent(
             tips("Some sections of the map are buggy section. When you step into it, you may encounter bugs at any time which you should combat with."),
         )
     },
+)
+
+private val enemy01: MapEvent = MapEvent(
+    enabled = EventCondition.CompareTime(Comparator.GT, "stack_frame_ruins_enemy01_respawn"),
+    trigger = MapEvent.Trigger.INTERACTED,
+    lineNumber = 64,
+    display = "catch(e: OutOfMemoryPulse)",
+    event = dialogueResCounter("stack_frame_ruins_enemy01") {
+        IF(EventCondition.QuestCompleted(SWQuests.c01_arrive_syntaxis.key))
+            .then(
+                ifTrue = Event.Choice(
+                    text("Call") to Event.Combat(
+                        config = Event.Combat.Config(
+                            enemies = listOf(
+                                SWEntitiesCommon.getCommonEnemy(Category.MEMORY, 2).name to EventValue.EnemyLevel(6)
+                            ),
+                        ),
+                        success = Event.SaveTimeStamp(
+                            key = "stack_frame_ruins_enemy01_respawn",
+                            time = TimeValue.After(6 * TimeHelper.ONE_HOUR),
+                        )
+                    ),
+                    text("Leave") to Event.Empty,
+                ),
+                ifFalse = npc(`object`, "This is a caught critical bug. We'd better not activate it for now..."),
+            )
+    }
 )

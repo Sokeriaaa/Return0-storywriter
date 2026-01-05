@@ -38,7 +38,13 @@ object SWQuests {
         name = "Arrive syntaxis",
         description = "Go through stack_frame_ruins and string_pool_oasis, reach syntaxis.",
         priority = 1,
-        navigation = SWMaps.null_view.name to 42,
+        currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
+    )
+    val c01_continue_the_journey = quest(
+        key = "c01_continue_the_journey",
+        name = "Continue the Journey",
+        description = "Continue on the way yo syntaxis.",
+        priority = 1,
         currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
     )
 
@@ -50,6 +56,7 @@ object SWQuests {
         c01_string_builder,
         c01_journey_start,
         c01_arrive_syntaxis,
+        c01_continue_the_journey,
     )
 
     private fun quest(
