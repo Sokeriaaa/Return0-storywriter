@@ -10,17 +10,18 @@ import sokeriaaa.return0.shared.data.models.component.conditions.EventCondition
 import sokeriaaa.return0.shared.data.models.component.values.EventValue
 import sokeriaaa.return0.shared.data.models.component.values.TimeValue
 import sokeriaaa.return0.shared.data.models.entity.category.Category
+import sokeriaaa.return0.shared.data.models.story.currency.CurrencyType
 import sokeriaaa.return0.shared.data.models.story.event.Event
 import sokeriaaa.return0.shared.data.models.story.event.Event.TeleportUserTo
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.entities.SWEntitiesCommon
+import sokeriaaa.return0.storywriter.data.map.quiz.SWQuizzes
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.`object`
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.stringbuilder
 import sokeriaaa.return0.storywriter.utils.dialogueResCounter
 
-@Suppress("UnusedReceiverParameter")
 val SWMaps.stack_frame_ruins: MapData
     get() = MapData(
         name = "stack_frame_ruins",
@@ -57,6 +58,7 @@ val SWMaps.stack_frame_ruins: MapData
             navigateUpEvent,
             stackFrameRuins01,
             enemy01,
+            miniQuiz1,
         )
     )
 
@@ -150,4 +152,28 @@ private val enemy01: MapEvent = MapEvent(
                 ifFalse = npc(`object`, "This is a caught critical bug. We'd better not activate it for now..."),
             )
     }
+)
+
+private val miniQuiz1: MapEvent = SWQuizzes.createQuiz(
+    id = 1,
+    lineNumber = 56,
+    q = "What happens when you force-unwrap a null value in Kotlin using `!!`?",
+    a = listOf(
+        "Returns null",
+        "Throws a NullPointerException",
+        "Converts to a default value",
+    ),
+    correctIndex = 1,
+    onCorrect = Event.CurrencyChange(
+        currency = CurrencyType.CRYPTO,
+        change = Value(2),
+    ),
+    onWrong = Event.Combat(
+        config = Event.Combat.Config(
+            enemies = listOf(
+                SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name to EventValue.EnemyLevel(3),
+                SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name to EventValue.EnemyLevel(3),
+            )
+        )
+    ),
 )
