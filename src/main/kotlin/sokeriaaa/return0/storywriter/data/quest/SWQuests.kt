@@ -23,6 +23,7 @@ object SWQuests {
         description = "Talk with StringBuilder.",
         priority = 1,
         navigation = SWMaps.null_view.name to 5,
+        currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
     )
     val c01_journey_start = quest(
         key = "c01_journey_start",
@@ -30,6 +31,15 @@ object SWQuests {
         description = "Move to the edge of null_view, find the entrance of stack_frame_ruins.",
         priority = 1,
         navigation = SWMaps.null_view.name to 42,
+        currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
+    )
+    val c01_arrive_syntaxis = quest(
+        key = "c01_arrive_syntaxis",
+        name = "Arrive syntaxis",
+        description = "Go through stack_frame_ruins and string_pool_oasis, reach syntaxis.",
+        priority = 1,
+        navigation = SWMaps.null_view.name to 42,
+        currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
     )
 
     // Branch
@@ -39,6 +49,7 @@ object SWQuests {
         chapter01,
         c01_string_builder,
         c01_journey_start,
+        c01_arrive_syntaxis,
     )
 
     private fun quest(

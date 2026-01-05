@@ -166,12 +166,12 @@ private val stringBuilder1: MapEvent = MapEvent(
             npc(`object`, "Proceed carefully, Ada Null."),
             npc(`object`, "Every step forward... allocates consequence."),
             Event.SaveSwitch("string_builder_indexed", CommonCondition.True),
-            Event.RefreshEvents,
-            tips("StringBuilder has joined your team.\n\nThis entity can deal high burst damage but need preparation and it's not suitable for long periods of combat.\nStack buff by \"append\" then unleash burst damage by \"toString\" and this will empty StringBuilder's SP."),
-
             Event.ObtainEntity(SWEntities.stringBuilder.name),
             Event.CompleteQuest(SWQuests.c01_string_builder.key),
-            Event.CompleteQuest(SWQuests.c01_journey_start.key),
+            Event.ClaimQuest(SWQuests.c01_journey_start.key),
+            Event.RefreshEvents,
+
+            tips("StringBuilder has joined your team.\n\nThis entity can deal high burst damage but need preparation and it's not suitable for long periods of combat.\nStack buff by \"append\" then unleash burst damage by \"toString\" and this will empty StringBuilder's SP."),
         )
     },
 )
