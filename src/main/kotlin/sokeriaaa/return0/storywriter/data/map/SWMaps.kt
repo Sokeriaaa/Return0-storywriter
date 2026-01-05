@@ -10,5 +10,6 @@ object SWMaps {
         null_view,
         silica_city,
         stack_frame_ruins,
+        string_pool_oasis,
     )
 }

@@ -43,7 +43,7 @@ object SWQuests {
     val c01_continue_the_journey = quest(
         key = "c01_continue_the_journey",
         name = "Continue the Journey",
-        description = "Continue on the way yo syntaxis.",
+        description = "Continue on the way to syntaxis.",
         priority = 1,
         currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
     )

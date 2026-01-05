@@ -56,6 +56,7 @@ val SWMaps.stack_frame_ruins: MapData
         failedAnchor = null_view.name to 1,
         events = listOf(
             navigateUpEvent,
+            stringPoolOasisEvent,
             stackFrameRuins01,
             enemy01,
             miniQuiz1,
@@ -70,6 +71,17 @@ private val navigateUpEvent: MapEvent = MapEvent(
     event = TeleportUserTo(
         SWMaps.null_view.name,
         Value(42),
+    ),
+)
+
+private val stringPoolOasisEvent: MapEvent = MapEvent(
+    enabled = CommonCondition.True,
+    trigger = MapEvent.Trigger.INTERACTED,
+    lineNumber = 134,
+    display = "moveTo(string_pool_oasis)",
+    event = TeleportUserTo(
+        SWMaps.string_pool_oasis.name,
+        Value(1),
     ),
 )
 
@@ -133,24 +145,23 @@ private val enemy01: MapEvent = MapEvent(
     lineNumber = 64,
     display = "catch(e: OutOfMemoryPulse)",
     event = dialogueResCounter("stack_frame_ruins_enemy01") {
-        IF(EventCondition.QuestCompleted(SWQuests.c01_arrive_syntaxis.key))
-            .then(
-                ifTrue = Event.Choice(
-                    text("Call") to Event.Combat(
-                        config = Event.Combat.Config(
-                            enemies = listOf(
-                                SWEntitiesCommon.getCommonEnemy(Category.MEMORY, 2).name to EventValue.EnemyLevel(6)
-                            ),
+        IF(EventCondition.QuestCompleted(SWQuests.c01_arrive_syntaxis.key)).then(
+            ifTrue = Event.Choice(
+                text("Call") to Event.Combat(
+                    config = Event.Combat.Config(
+                        enemies = listOf(
+                            SWEntitiesCommon.getCommonEnemy(Category.MEMORY, 2).name to EventValue.EnemyLevel(6)
                         ),
-                        success = Event.SaveTimeStamp(
-                            key = "stack_frame_ruins_enemy01_respawn",
-                            time = TimeValue.After(6 * TimeHelper.ONE_HOUR),
-                        )
                     ),
-                    text("Leave") to Event.Empty,
+                    success = Event.SaveTimeStamp(
+                        key = "stack_frame_ruins_enemy01_respawn",
+                        time = TimeValue.After(6 * TimeHelper.ONE_HOUR),
+                    )
                 ),
-                ifFalse = npc(`object`, "This is a caught critical bug. We'd better not activate it for now..."),
-            )
+                text("Leave") to Event.Empty,
+            ),
+            ifFalse = npc(`object`, "This is a caught critical bug. We'd better not activate it for now..."),
+        )
     }
 )
 
@@ -171,8 +182,8 @@ private val miniQuiz1: MapEvent = SWQuizzes.createQuiz(
     onWrong = Event.Combat(
         config = Event.Combat.Config(
             enemies = listOf(
-                SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name to EventValue.EnemyLevel(3),
-                SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name to EventValue.EnemyLevel(3),
+                SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name to EventValue.EnemyLevel(2),
+                SWEntitiesCommon.getCommonEnemy(Category.VOID, 0).name to EventValue.EnemyLevel(2),
             )
         )
     ),
