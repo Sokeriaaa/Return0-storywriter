@@ -52,6 +52,7 @@ val SWMaps.stack_frame_ruins: MapData
                 difficulty = 1,
             ),
         ),
+        failedAnchor = null_view.name to 1,
         events = listOf(
             navigateUpEvent,
             stackFrameRuins01,
