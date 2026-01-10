@@ -20,6 +20,7 @@ import sokeriaaa.return0.shared.data.api.component.extra.extrasGroupOf
 import sokeriaaa.return0.shared.data.api.component.value.*
 import sokeriaaa.return0.shared.data.models.action.function.FunctionData
 import sokeriaaa.return0.shared.data.models.action.function.FunctionTarget
+import sokeriaaa.return0.shared.data.models.component.conditions.CombatCondition
 import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.extras.CombatExtra
 import sokeriaaa.return0.shared.data.models.component.extras.CommonExtra
@@ -86,7 +87,7 @@ object SWSkills {
                     CombatExtra.AttachEffect(
                         name = SWEffects.optimize.name,
                         turns = Value(1),
-                        tier = ActionValue.Tier * 20 + 30,
+                        tier = ActionValue.Tier * 20 + 20,
                     ),
                 )
             )
@@ -106,7 +107,7 @@ object SWSkills {
             spCostBonus = 20,
             growth = listOf(15, 25, 40, 60, 80),
             attackModifier = FunctionData.AttackModifier(
-                actualPower = (Value(1) shl Value(0, 4)) * (ActionValue.Tier * 1 + 6)
+                actualPower = (Value(2) shl Value(0, 4)) * (ActionValue.Tier * 1 + 6)
             )
         ),
     )
@@ -130,7 +131,7 @@ object SWSkills {
                 extra = CombatExtra.AttachEffect(
                     name = SWEffects.optimize.name,
                     turns = EntityValue.TurnsLeftOf(SWEffects.optimize.name) + 2,
-                    tier = ActionValue.Tier + 2,
+                    tier = ActionValue.Tier + 4,
                 ),
             )
         ),
@@ -145,12 +146,12 @@ object SWSkills {
             bullseye = false,
             basePower = 0,
             powerBonus = 0,
-            baseSPCost = 0,
+            baseSPCost = 1,
             spCostBonus = 0,
             growth = listOf(),
             attackModifier = FunctionData.AttackModifier(
                 actualPower = CombatValue.ForUser(
-                    (EntityValue.SP.pow(0.6F)) + (EntityValue.TurnsLeftOf(SWEffects.optimize.name) * 32)
+                    (EntityValue.SP.pow(0.5F)) + (EntityValue.TurnsLeftOf(SWEffects.optimize.name) * 64)
                 ).coerceAtLeast(1)
             ),
             extra = CommonExtra.ForUser(
@@ -199,7 +200,7 @@ object SWSkills {
                 extra = CombatExtra.AttachEffect(
                     name = SWEffects.async.name,
                     turns = Value(1),
-                    tier = Value(10) + ActionValue.Tier * 2,
+                    tier = Value(10) + ActionValue.Tier * 4,
                 )
             )
         )
@@ -250,7 +251,8 @@ object SWSkills {
     )
 
     val gc = SkillEntry(
-        simpleDescription = "Lightly heals a single allies and remove all their debuff effects.",
+        simpleDescription = "Lightly heals a single allies and remove all their debuff effects. " +
+                "When invoking at yourself, the healing is significantly buffed.",
         functionData = FunctionData(
             name = "gc",
             category = Category.MEMORY,
@@ -261,13 +263,20 @@ object SWSkills {
             baseSPCost = 100,
             spCostBonus = 20,
             growth = listOf(5, 15, 25, 40, 60, 80),
-            extra = CombatExtra.RemoveAllEffect(debuff = true)
+            extra = CombatExtra.RemoveAllEffect(debuff = true),
+            attackModifier = FunctionData.AttackModifier(
+                actualPower = IF(CombatCondition.TargetingSelf)
+                    .then(
+                        ifTrue = ActionValue.Skills.Power * 20,
+                        ifFalse = ActionValue.Skills.Power,
+                    )
+            )
         )
     )
 
     val arraycopy = SkillEntry(
         simpleDescription = "Perform an array copy. Lightly consumes your HP, " +
-                "then creates a shield lasts for 3 turns based on your MAXHP for a teammate. " +
+                "then creates a shield based on your MAXHP for a teammate. " +
                 "Has no effect when your HP is insufficient for consuming.",
         functionData = FunctionData(
             name = "arraycopy",
@@ -286,8 +295,7 @@ object SWSkills {
                         ifTrue = extrasGroupOf(
                             CombatExtra.AttachShield(
                                 key = "arraycopy",
-                                value = hpConsumed * (ActionValue.Tier * 0.2F + 0.8F),
-                                turns = Value(3),
+                                value = hpConsumed * (ActionValue.Tier * 0.3F + 1.2F),
                             ),
                             CommonExtra.ForUser(
                                 extra = CombatExtra.HPChange(

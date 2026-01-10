@@ -53,6 +53,10 @@ object SWEntities {
             SWSkills.toString.functionData,
             SWSkills.delete.functionData,
         ),
+        attackModifier = EntityData.GeneralAttackModifier(
+            power = 10,
+            attackTimes = 3,
+        ),
     )
 
     val iterator = EntityData(
