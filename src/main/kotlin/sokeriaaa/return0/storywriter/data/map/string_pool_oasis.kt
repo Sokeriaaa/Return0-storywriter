@@ -13,6 +13,7 @@ import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.entities.SWEntitiesCommon
 import sokeriaaa.return0.storywriter.data.map.quiz.SWQuizzes
+import sokeriaaa.return0.storywriter.data.map.routehub.SWRouteHub
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.`object`
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.stringbuilder
@@ -53,6 +54,7 @@ val SWMaps.string_pool_oasis: MapData
         ),
         failedAnchor = null_view.name to 1,
         events = listOf(
+            SWRouteHub.commonHub(lineNumber = 58),
             navigateUpEvent,
             stringPoolOasis01,
             stringPoolOasis02,

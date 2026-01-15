@@ -10,6 +10,7 @@ import sokeriaaa.return0.shared.data.models.story.event.Event.TeleportUserTo
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
+import sokeriaaa.return0.storywriter.data.map.routehub.SWRouteHub
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.`object`
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.stringbuilder
@@ -24,6 +25,7 @@ val SWMaps.null_view: MapData
         buggyRange = emptyList(),
         buggyEntries = emptyList(),
         events = listOf(
+            SWRouteHub.commonHub(lineNumber = 1),
             nullViewEvent01,
             stringBuilder1,
             stackFrameRuinsEvent,

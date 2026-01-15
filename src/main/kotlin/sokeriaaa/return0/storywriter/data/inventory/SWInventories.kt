@@ -16,10 +16,31 @@ package sokeriaaa.return0.storywriter.data.inventory
 
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 import sokeriaaa.return0.shared.data.models.entity.path.EntityPath
+import sokeriaaa.return0.shared.data.models.story.inventory.ItemData
+import sokeriaaa.return0.storywriter.res.SWStrings
 
 object SWInventories {
 
+    val routerAccessToken = ItemData(
+        key = "router_access_token",
+        nameRes = SWStrings.create(
+            "inventory.router_access_token",
+            "Router Access Token",
+        ),
+        descriptionRes = SWStrings.create(
+            "inventory.router_access_token.desc",
+            "A master key for traversing the networked world. When bound to a user, it grants permission to interface with dormant Router Hubs.",
+        ),
+        loreRes = SWStrings.create(
+            "inventory.router_access_token.lore",
+            "Distance is a lie. Only permissions matter.",
+        ),
+        rarity = ItemData.Rarity.LEGENDARY,
+        types = listOf(ItemData.Type.QUEST),
+    )
+
     val inventories = listOf(
+        routerAccessToken,
         *GeneralMaterial.entries
             .asSequence()
             .flatMap { type ->
