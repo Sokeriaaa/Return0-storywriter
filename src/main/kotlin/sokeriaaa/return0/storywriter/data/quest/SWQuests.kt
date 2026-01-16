@@ -47,6 +47,20 @@ object SWQuests {
         priority = 1,
         currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
     )
+    val c01_explore_syntaxis = quest(
+        key = "c01_explore_syntaxis",
+        name = "Explore syntaxis",
+        description = "Explore around the syntaxis.",
+        priority = 1,
+        currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
+    )
+    val c01_go_forward = quest(
+        key = "c01_go_forward",
+        name = "Go Forward",
+        description = "Go forward from syntaxis.",
+        priority = 1,
+        currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
+    )
 
     // Branch
 
@@ -57,6 +71,7 @@ object SWQuests {
         c01_journey_start,
         c01_arrive_syntaxis,
         c01_continue_the_journey,
+        c01_explore_syntaxis,
     )
 
     private fun quest(

@@ -31,6 +31,7 @@ object SWDialogueNames {
     // Parties
     val `object`: String by lazy { create("Object") }
     val stringbuilder: String by lazy { create("StringBuilder") }
+    val validator: String by lazy { create("Validator") }
 
     private fun create(
         name: String,

@@ -56,6 +56,7 @@ val SWMaps.string_pool_oasis: MapData
         events = listOf(
             SWRouteHub.commonHub(lineNumber = 58),
             navigateUpEvent,
+            syntaxisEvent,
             stringPoolOasis01,
             stringPoolOasis02,
             nullDisplay,
@@ -71,6 +72,17 @@ private val navigateUpEvent: MapEvent = MapEvent(
     event = TeleportUserTo(
         SWMaps.stack_frame_ruins.name,
         Value(134),
+    ),
+)
+
+private val syntaxisEvent: MapEvent = MapEvent(
+    enabled = CommonCondition.True,
+    trigger = MapEvent.Trigger.INTERACTED,
+    lineNumber = 155,
+    display = "moveTo(syntaxis)",
+    event = TeleportUserTo(
+        SWMaps.syntaxis.name,
+        Value(1),
     ),
 )
 
