@@ -20,6 +20,7 @@ import sokeriaaa.return0.storywriter.data.SWEffects
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
 import sokeriaaa.return0.storywriter.data.inventory.SWInventories
 import sokeriaaa.return0.storywriter.data.map.SWMaps
+import sokeriaaa.return0.storywriter.data.plugins.SWPlugins
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.data.skill.SWSkills
 import sokeriaaa.return0.storywriter.res.SWStrings
@@ -34,6 +35,7 @@ fun main() {
     File("./output/data/entity").mkdir()
     File("./output/data/inventory").mkdir()
     File("./output/data/map").mkdir()
+    File("./output/data/plugin").mkdir()
     File("./output/data/quest").mkdir()
     File("./output/res").mkdir()
 
@@ -53,6 +55,10 @@ fun main() {
     // Output - Inventories
     SWInventories.inventories.forEach {
         File("./output/data/inventory/${it.key}.json").writeText(it.toJsonString())
+    }
+    // Output - Plugins
+    SWPlugins.plugins.forEach {
+        File("./output/data/plugin/${it.key}.json").writeText(it.toJsonString())
     }
     // Output - Quests
     SWQuests.quests.forEach {
