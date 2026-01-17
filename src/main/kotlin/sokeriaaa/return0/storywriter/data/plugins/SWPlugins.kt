@@ -26,7 +26,7 @@ object SWPlugins {
         name = "Growth Factor Array",
         description = "Each action increases damage by 1 stack, maximum for 10.",
         path = EntityPath.HEAP,
-        attackRate = ((EntityValue.ActionsTaken.coerceAtMost(10)) * PluginValue.Tier * 0.005F) + 1
+        attackRateOffset = ((EntityValue.ActionsTaken.coerceAtMost(10)) * PluginValue.Tier * 0.005F)
     )
 
     // Thread
@@ -76,8 +76,8 @@ object SWPlugins {
         path: EntityPath,
         onAttack: Extra? = null,
         onDefend: Extra? = null,
-        attackRate: Value? = null,
-        defendRate: Value? = null,
+        attackRateOffset: Value? = null,
+        defendRateOffset: Value? = null,
     ): PluginData = PluginData(
         key = key,
         nameRes = SWStrings.create(
@@ -91,7 +91,7 @@ object SWPlugins {
         path = path,
         onAttack = onAttack,
         onDefend = onDefend,
-        attackRate = attackRate,
-        defendRate = defendRate,
+        attackRateOffset = attackRateOffset,
+        defendRateOffset = defendRateOffset,
     )
 }
