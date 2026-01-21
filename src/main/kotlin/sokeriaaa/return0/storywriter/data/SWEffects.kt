@@ -14,12 +14,17 @@
  */
 package sokeriaaa.return0.storywriter.data
 
+import sokeriaaa.return0.shared.data.api.component.extra.extrasGroupOf
+import sokeriaaa.return0.shared.data.api.component.value.coerceIn
 import sokeriaaa.return0.shared.data.api.component.value.times
+import sokeriaaa.return0.shared.data.api.component.value.unaryMinus
 import sokeriaaa.return0.shared.data.models.action.effect.EffectData
 import sokeriaaa.return0.shared.data.models.action.effect.EffectModifier
 import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.extras.CombatExtra
+import sokeriaaa.return0.shared.data.models.component.extras.CommonExtra
 import sokeriaaa.return0.shared.data.models.component.values.ActionValue
+import sokeriaaa.return0.shared.data.models.component.values.CombatValue
 import sokeriaaa.return0.shared.data.models.component.values.EntityValue
 
 object SWEffects {
@@ -152,6 +157,26 @@ object SWEffects {
         )
     )
 
+    val injected = EffectEntry(
+        simpleDescription = "Injected data, HP absorbed by the injector. Ignores shields.",
+        effectData = EffectData(
+            name = "injected",
+            abbr = "INJ",
+            isDebuff = true,
+            isStackable = true,
+            extra = extrasGroupOf(
+                CommonExtra.SaveValue("CurrentHP", EntityValue.HP),
+                CommonExtra.SaveValue("HPChange", EntityValue.MAXHP * 0.03125F * ActionValue.Tier),
+                CombatExtra.HPChange(-CombatValue.LoadValue("HPChange")),
+                CommonExtra.ForUser(
+                    CombatExtra.HPChange(
+                        CombatValue.LoadValue("HPChange").coerceIn(0, CombatValue.LoadValue("CurrentHP")),
+                    ),
+                ),
+            )
+        )
+    )
+
     //===================
     // Special
     //===================
@@ -173,6 +198,7 @@ object SWEffects {
         overflowed,
         ioFailure,
         bugInfested,
+        injected,
         refactoring,
         deadlocked,
     )

@@ -16,6 +16,7 @@ package sokeriaaa.return0.storywriter.data.skill
 
 import sokeriaaa.return0.shared.data.api.component.condition.IF
 import sokeriaaa.return0.shared.data.api.component.condition.gt
+import sokeriaaa.return0.shared.data.api.component.condition.gtEq
 import sokeriaaa.return0.shared.data.api.component.extra.extrasGroupOf
 import sokeriaaa.return0.shared.data.api.component.value.*
 import sokeriaaa.return0.shared.data.models.action.function.FunctionData
@@ -27,6 +28,7 @@ import sokeriaaa.return0.shared.data.models.component.extras.CommonExtra
 import sokeriaaa.return0.shared.data.models.component.values.ActionValue
 import sokeriaaa.return0.shared.data.models.component.values.CombatValue
 import sokeriaaa.return0.shared.data.models.component.values.EntityValue
+import sokeriaaa.return0.shared.data.models.component.values.Value
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 import sokeriaaa.return0.storywriter.data.SWEffects
 
@@ -311,6 +313,88 @@ object SWSkills {
     )
 
     //===================
+    // Entity - Validator
+    //===================
+    val setResourceResolver = SkillEntry(
+        simpleDescription = "Sets the resource resolver to handle schema imports " +
+                "or included documents. Apply 3-round Injected effect on target, " +
+                "if target has full hp, apply 12-round instead.",
+        functionData = FunctionData(
+            name = "setResourceResolver",
+            category = Category.IO,
+            target = FunctionTarget.SingleEnemy,
+            bullseye = false,
+            basePower = 70,
+            powerBonus = 20,
+            baseSPCost = 100,
+            spCostBonus = 25,
+            growth = listOf(1, 20, 60),
+            extra = CombatExtra.AttachEffect(
+                name = SWEffects.injected.name,
+                turns = IF((EntityValue.HP + CombatValue.DamageCoerced) gtEq EntityValue.MAXHP)
+                    .then(ifTrue = Value(12), ifFalse = Value(3)) as Value.Combat,
+                tier = ActionValue.Tier + 1,
+            )
+        )
+    )
+
+    val setErrorHandler = SkillEntry(
+        simpleDescription = "Sets the error handler for validation events. Apply cached effect " +
+                "to yourself.",
+        functionData = FunctionData(
+            name = "setErrorHandler",
+            category = Category.SECURITY,
+            target = FunctionTarget.Self,
+            bullseye = false,
+            basePower = 0,
+            powerBonus = 0,
+            baseSPCost = 60,
+            spCostBonus = 10,
+            growth = listOf(10, 45, 75),
+            extra = CommonExtra.ForUser(
+                CombatExtra.AttachEffect(
+                    name = SWEffects.cached.name,
+                    turns = ActionValue.Tier + 2,
+                    tier = ActionValue.Tier + 2,
+                ),
+            ),
+        )
+    )
+
+    val validate = SkillEntry(
+        simpleDescription = "Validates the specified XML input source. The more turns of " +
+                "inject effect target have and cached effect you have, the more power " +
+                "this function is, and the more chance to apply a 5-round bugInfested effect.",
+        functionData = FunctionData(
+            name = "validate",
+            category = Category.SECURITY,
+            target = FunctionTarget.SingleEnemy,
+            bullseye = false,
+            basePower = 80,
+            powerBonus = 20,
+            baseSPCost = 120,
+            spCostBonus = 30,
+            growth = listOf(1, 30, 70),
+            attackModifier = FunctionData.AttackModifier(
+                actualPower = ActionValue.Skills.Power + (EntityValue.TurnsLeftOf(SWEffects.injected.name) +
+                        CombatValue.ForUser(EntityValue.TurnsLeftOf(SWEffects.cached.name))) * 5,
+            ),
+            extra = IF(
+                condition = CommonCondition.Chance(
+                    success = (EntityValue.TurnsLeftOf(SWEffects.injected.name) +
+                            CombatValue.ForUser(EntityValue.TurnsLeftOf(SWEffects.cached.name))) * 0.05F,
+                )
+            ).then(
+                ifTrue = CombatExtra.AttachEffect(
+                    name = SWEffects.bugInfested.name,
+                    turns = Value(5),
+                    tier = ActionValue.Tier + 1,
+                ),
+            )
+        )
+    )
+
+    //===================
     // Enemy
     //===================
     val leak = SkillEntry(
@@ -365,6 +449,9 @@ object SWSkills {
         getProperty,
         gc,
         arraycopy,
+        setResourceResolver,
+        setErrorHandler,
+        validate,
         delete,
         // All general attack skills.
         *Category.entries

@@ -97,12 +97,30 @@ object SWEntities {
         ),
     )
 
+    val validator = EntityData(
+        name = "Validator",
+        path = EntityPath.RUNTIME,
+        category = Category.SECURITY,
+        baseATK = 58,
+        baseDEF = 29,
+        baseSPD = 41,
+        baseHP = 286,
+        baseSP = 305,
+        baseAP = 120,
+        functions = listOf(
+            SWSkills.setResourceResolver.functionData,
+            SWSkills.setErrorHandler.functionData,
+            SWSkills.validate.functionData,
+        ),
+    )
+
     val values = listOf(
         // Party
         `object`,
         stringBuilder,
         iterator,
         system,
+        validator,
         // Enemy: Common & Elite
         *Category.entries
             .asSequence()
