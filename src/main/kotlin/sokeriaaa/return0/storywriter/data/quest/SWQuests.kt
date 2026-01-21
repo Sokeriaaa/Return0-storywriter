@@ -63,6 +63,13 @@ object SWQuests {
     )
 
     // Branch
+    val b_syntaxis_plugin = quest(
+        key = "b_syntaxis_plugin",
+        name = "External Logic",
+        description = "Give 3 Logic Dust to the PluginSmith.",
+        priority = 3,
+        currencyRewards = mapOf(CurrencyType.CRYPTO to 1)
+    )
 
     // All quests
     val quests = listOf(
@@ -72,6 +79,7 @@ object SWQuests {
         c01_arrive_syntaxis,
         c01_continue_the_journey,
         c01_explore_syntaxis,
+        b_syntaxis_plugin,
     )
 
     private fun quest(

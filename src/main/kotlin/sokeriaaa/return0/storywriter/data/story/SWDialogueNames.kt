@@ -33,6 +33,9 @@ object SWDialogueNames {
     val stringbuilder: String by lazy { create("StringBuilder") }
     val validator: String by lazy { create("Validator") }
 
+    // NPC
+    val pluginSmith: String by lazy { create("PluginSmith") }
+
     private fun create(
         name: String,
         res: String = name.lowercase().replace(' ', '_').replace('-', '_'),
