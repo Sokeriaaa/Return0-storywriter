@@ -12,5 +12,6 @@ object SWMaps {
         stack_frame_ruins,
         string_pool_oasis,
         syntaxis,
+        testing,
     )
 }
