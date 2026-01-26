@@ -67,8 +67,7 @@ object SWSkillsCommon {
                 bullseye = false,
                 basePower = type * 60 + 40,
                 powerBonus = type * 30 + 20,
-                baseSPCost = type * 60 + 30,
-                spCostBonus = type * 30 + 15,
+                baseSPCost = type * 50 + 100,
                 growth = when (type) {
                     0 -> listOf(5, 15, 30)
                     1 -> listOf(20, 35, 50, 70)

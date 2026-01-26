@@ -63,8 +63,7 @@ object SWSkills {
             bullseye = false,
             basePower = 40,
             powerBonus = 20,
-            baseSPCost = 40,
-            spCostBonus = 20,
+            baseSPCost = 100,
             growth = listOf(2, 10, 20, 35, 50, 70),
         ),
     )
@@ -78,8 +77,7 @@ object SWSkills {
             bullseye = true,
             basePower = 0,
             powerBonus = 0,
-            baseSPCost = 80,
-            spCostBonus = 20,
+            baseSPCost = 50,
             growth = listOf(5, 30, 80),
             extra = CommonExtra.ForUser(
                 extra = extrasGroupOf(
@@ -105,8 +103,7 @@ object SWSkills {
             bullseye = false,
             basePower = 0,
             powerBonus = 0,
-            baseSPCost = 120,
-            spCostBonus = 20,
+            baseSPCost = 150,
             growth = listOf(15, 25, 40, 60, 80),
             attackModifier = FunctionData.AttackModifier(
                 actualPower = (Value(2) shl Value(0, 4)) * (ActionValue.Tier * 1 + 6)
@@ -127,7 +124,6 @@ object SWSkills {
             basePower = 15,
             powerBonus = 5,
             baseSPCost = 50,
-            spCostBonus = 10,
             growth = listOf(1, 10, 20, 35, 50, 70),
             extra = CommonExtra.ForUser(
                 extra = CombatExtra.AttachEffect(
@@ -149,11 +145,10 @@ object SWSkills {
             basePower = 0,
             powerBonus = 0,
             baseSPCost = 1,
-            spCostBonus = 0,
             growth = listOf(),
             attackModifier = FunctionData.AttackModifier(
                 actualPower = CombatValue.ForUser(
-                    (EntityValue.SP.pow(0.5F)) + (EntityValue.TurnsLeftOf(SWEffects.optimize.name) * 64)
+                    (EntityValue.SP * 0.2F) + (EntityValue.TurnsLeftOf(SWEffects.optimize.name) * 64)
                 ).coerceAtLeast(1)
             ),
             extra = CommonExtra.ForUser(
@@ -177,8 +172,7 @@ object SWSkills {
             bullseye = false,
             basePower = 5,
             powerBonus = 2,
-            baseSPCost = 70,
-            spCostBonus = 10,
+            baseSPCost = 150,
             growth = listOf(0, 10, 20, 35, 50, 70),
             attackModifier = FunctionData.AttackModifier(
                 attackTimes = Value(8, 12)
@@ -195,8 +189,7 @@ object SWSkills {
             bullseye = true,
             basePower = 12,
             powerBonus = 2,
-            baseSPCost = 30,
-            spCostBonus = 5,
+            baseSPCost = 50,
             growth = listOf(5, 15, 30, 45, 60),
             extra = CommonExtra.ForUser(
                 extra = CombatExtra.AttachEffect(
@@ -218,7 +211,6 @@ object SWSkills {
             basePower = 120,
             powerBonus = 20,
             baseSPCost = 200,
-            spCostBonus = 50,
             growth = listOf(25, 55, 80),
             extra = CombatExtra.AttachEffect(
                 name = SWEffects.overflowed.name,
@@ -242,7 +234,6 @@ object SWSkills {
             basePower = 70,
             powerBonus = 10,
             baseSPCost = 100,
-            spCostBonus = 10,
             growth = listOf(0, 10, 20, 35, 50, 70),
             extra = CommonExtra.ForUser(
                 extra = CombatExtra.HPChange(
@@ -263,7 +254,6 @@ object SWSkills {
             basePower = -10,
             powerBonus = -1,
             baseSPCost = 100,
-            spCostBonus = 20,
             growth = listOf(5, 15, 25, 40, 60, 80),
             extra = CombatExtra.RemoveAllEffect(debuff = true),
             attackModifier = FunctionData.AttackModifier(
@@ -287,8 +277,7 @@ object SWSkills {
             bullseye = false,
             basePower = 0,
             powerBonus = 0,
-            baseSPCost = 150,
-            spCostBonus = 25,
+            baseSPCost = 100,
             growth = listOf(10, 25, 45, 65, 85),
             extra = run {
                 val hpConsumed = (CombatValue.ForUser(EntityValue.MAXHP) * 0.1F)
@@ -327,7 +316,6 @@ object SWSkills {
             basePower = 70,
             powerBonus = 20,
             baseSPCost = 100,
-            spCostBonus = 25,
             growth = listOf(1, 20, 60),
             extra = CombatExtra.AttachEffect(
                 name = SWEffects.injected.name,
@@ -348,8 +336,7 @@ object SWSkills {
             bullseye = false,
             basePower = 0,
             powerBonus = 0,
-            baseSPCost = 60,
-            spCostBonus = 10,
+            baseSPCost = 50,
             growth = listOf(10, 45, 75),
             extra = CommonExtra.ForUser(
                 CombatExtra.AttachEffect(
@@ -372,8 +359,7 @@ object SWSkills {
             bullseye = false,
             basePower = 80,
             powerBonus = 20,
-            baseSPCost = 120,
-            spCostBonus = 30,
+            baseSPCost = 150,
             growth = listOf(1, 30, 70),
             attackModifier = FunctionData.AttackModifier(
                 actualPower = ActionValue.Skills.Power + (EntityValue.TurnsLeftOf(SWEffects.injected.name) +
@@ -406,8 +392,7 @@ object SWSkills {
             bullseye = false,
             basePower = 20,
             powerBonus = 10,
-            baseSPCost = 40,
-            spCostBonus = 20,
+            baseSPCost = 100,
             growth = listOf(1, 20, 40, 70),
             extra = CombatExtra.AttachEffect(
                 name = SWEffects.bugInfested.name,
@@ -429,8 +414,7 @@ object SWSkills {
             bullseye = false,
             basePower = 120,
             powerBonus = 20,
-            baseSPCost = 200,
-            spCostBonus = 50,
+            baseSPCost = 150,
             growth = listOf(25, 55, 80),
             extra = IF(CommonCondition.Chance(EntityValue.HPRate))
                 .then(CombatExtra.RemoveAllShields)
