@@ -29,7 +29,7 @@ object SWEntities {
         baseDEF = 27,
         baseSPD = 28,
         baseHP = 314,
-        baseSP = 288,
+        baseSP = 500,
         baseAP = 120,
         functions = listOf(
             SWSkills.notify.functionData,
@@ -46,7 +46,7 @@ object SWEntities {
         baseDEF = 22,
         baseSPD = 33,
         baseHP = 275,
-        baseSP = 303,
+        baseSP = 500,
         baseAP = 110,
         functions = listOf(
             SWSkills.append.functionData,
@@ -67,7 +67,7 @@ object SWEntities {
         baseDEF = 20,
         baseSPD = 48,
         baseHP = 227,
-        baseSP = 215,
+        baseSP = 500,
         baseAP = 110,
         functions = listOf(
             SWSkills.forEach.functionData,
@@ -88,7 +88,7 @@ object SWEntities {
         baseDEF = 34,
         baseSPD = 24,
         baseHP = 368,
-        baseSP = 225,
+        baseSP = 500,
         baseAP = 130,
         functions = listOf(
             SWSkills.getProperty.functionData,
@@ -105,7 +105,7 @@ object SWEntities {
         baseDEF = 29,
         baseSPD = 41,
         baseHP = 286,
-        baseSP = 305,
+        baseSP = 500,
         baseAP = 120,
         functions = listOf(
             SWSkills.setResourceResolver.functionData,

@@ -30,7 +30,6 @@ object SWCategories {
                 defGrowth = 0.25F,
                 spdGrowth = 0.25F,
                 hpGrowth = 0.25F,
-                spGrowth = 0.25F,
             )
 
             Category.INTERFACE -> EntityGrowth(
@@ -38,15 +37,13 @@ object SWCategories {
                 defGrowth = 0.24F,
                 spdGrowth = 0.26F,
                 hpGrowth = 0.24F,
-                spGrowth = 0.25F,
             )
 
             Category.REFLECT -> EntityGrowth(
                 atkGrowth = 0.27F,
                 defGrowth = 0.26F,
                 spdGrowth = 0.21F,
-                hpGrowth = 0.27F,
-                spGrowth = 0.24F,
+                hpGrowth = 0.26F,
             )
 
             Category.CONCURRENT -> EntityGrowth(
@@ -54,71 +51,62 @@ object SWCategories {
                 defGrowth = 0.24F,
                 spdGrowth = 0.28F,
                 hpGrowth = 0.22F,
-                spGrowth = 0.25F,
             )
 
             Category.STREAM -> EntityGrowth(
                 atkGrowth = 0.27F,
                 defGrowth = 0.23F,
                 spdGrowth = 0.27F,
-                hpGrowth = 0.24F,
-                spGrowth = 0.24F,
+                hpGrowth = 0.23F,
             )
 
             Category.IO -> EntityGrowth(
                 atkGrowth = 0.24F,
-                defGrowth = 0.25F,
+                defGrowth = 0.26F,
                 spdGrowth = 0.24F,
                 hpGrowth = 0.26F,
-                spGrowth = 0.26F,
             )
 
             Category.EXCEPTION -> EntityGrowth(
                 atkGrowth = 0.28F,
-                defGrowth = 0.21F,
-                spdGrowth = 0.28F,
-                hpGrowth = 0.20F,
-                spGrowth = 0.28F,
+                defGrowth = 0.22F,
+                spdGrowth = 0.29F,
+                hpGrowth = 0.21F,
             )
 
             Category.SECURITY -> EntityGrowth(
                 atkGrowth = 0.22F,
                 defGrowth = 0.27F,
-                spdGrowth = 0.26F,
+                spdGrowth = 0.25F,
                 hpGrowth = 0.26F,
-                spGrowth = 0.24F,
             )
 
             Category.DEBUG -> EntityGrowth(
                 atkGrowth = 0.22F,
-                defGrowth = 0.22F,
-                spdGrowth = 0.26F,
-                hpGrowth = 0.23F,
-                spGrowth = 0.32F,
+                defGrowth = 0.23F,
+                spdGrowth = 0.31F,
+                hpGrowth = 0.24F,
             )
 
             Category.GENERIC -> EntityGrowth(
                 atkGrowth = 0.25F,
                 defGrowth = 0.25F,
                 spdGrowth = 0.24F,
-                hpGrowth = 0.25F,
-                spGrowth = 0.26F,
+                hpGrowth = 0.26F,
             )
 
             Category.MEMORY -> EntityGrowth(
                 atkGrowth = 0.21F,
                 defGrowth = 0.29F,
-                spdGrowth = 0.20F,
-                hpGrowth = 0.32F,
-                spGrowth = 0.23F,
+                spdGrowth = 0.19F,
+                hpGrowth = 0.31F,
             )
 
             Category.VOID -> EntityGrowth(
                 atkGrowth = 0.23F,
-                defGrowth = 0.29F,
+                defGrowth = 0.30F,
                 spdGrowth = 0.22F,
-                hpGrowth = 0.24F,
-                spGrowth = 0.27F,
+                hpGrowth = 0.25F,
             )
         }
     }
