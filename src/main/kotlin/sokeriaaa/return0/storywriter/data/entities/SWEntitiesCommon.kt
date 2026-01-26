@@ -77,7 +77,7 @@ object SWEntitiesCommon {
             baseDEF = ((40 + 20 * type) * (growth.defGrowth + 0.25F)).roundToInt(),
             baseSPD = ((50 + 10 * type) * (growth.spdGrowth + 0.25F)).roundToInt(),
             baseHP = ((240 + 120 * type) * (growth.hpGrowth + 0.25F)).roundToInt(),
-            baseSP = ((200 + 100 * type) * (growth.spGrowth + 0.25F)).roundToInt(),
+            baseSP = 500,
             baseAP = 120 + type * 20,
             functions = getCommonFunctionSet(category, type),
             dropTable = getCommonDropTable(category, type),
