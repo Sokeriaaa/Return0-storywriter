@@ -14,14 +14,19 @@
  */
 package sokeriaaa.return0.storywriter.data.map
 
+import sokeriaaa.return0.shared.common.helpers.TimeHelper
+import sokeriaaa.return0.shared.data.api.story.event.interactive.buildShop
 import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.values.CommonValue
+import sokeriaaa.return0.shared.data.models.component.values.TimeValue
 import sokeriaaa.return0.shared.data.models.entity.category.Category
 import sokeriaaa.return0.shared.data.models.story.event.Event
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
 import sokeriaaa.return0.storywriter.data.entities.SWEntitiesCommon
+import sokeriaaa.return0.storywriter.data.inventory.GeneralMaterial
+import sokeriaaa.return0.storywriter.data.inventory.SWInventoriesCommonMaterials
 import sokeriaaa.return0.storywriter.data.plugins.SWPlugins
 
 /**
@@ -62,6 +67,7 @@ val SWMaps.testing: MapData
             recoverAll,
             obtainAllEntities,
             obtainPluginSet,
+            shop,
         ),
     )
 
@@ -97,4 +103,29 @@ private val obtainPluginSet: MapEvent = MapEvent(
         Event.ObtainPlugin(SWPlugins.growthFactorArray.key, CommonValue.Math.RandomInt(1, 5)),
         Event.ObtainPlugin(SWPlugins.raceCondition.key, CommonValue.Math.RandomInt(1, 5)),
     ),
+)
+
+private val shop: MapEvent = MapEvent(
+    enabled = CommonCondition.True,
+    trigger = MapEvent.Trigger.INTERACTED,
+    lineNumber = 10,
+    display = "shop()",
+    event = buildShop(key = "testing_shop") {
+        GeneralMaterial.entries.forEach { type ->
+            val item = SWInventoriesCommonMaterials.getGeneralMaterial(type = type, tier = 0)
+            inventory(item.key) soldFor 100.token
+        }
+        GeneralMaterial.entries.forEach { type ->
+            val item = SWInventoriesCommonMaterials.getGeneralMaterial(type = type, tier = 1)
+            inventory(item.key) soldFor 200.token limitFor 10 refreshAfter TimeValue.After(TimeHelper.ONE_DAY)
+        }
+        GeneralMaterial.entries.forEach { type ->
+            val item = SWInventoriesCommonMaterials.getGeneralMaterial(type = type, tier = 2)
+            inventory(item.key) soldFor 500.token limitFor 5 refreshAfter TimeValue.After(TimeHelper.ONE_DAY)
+        }
+        GeneralMaterial.entries.forEach { type ->
+            val item = SWInventoriesCommonMaterials.getGeneralMaterial(type = type, tier = 3)
+            inventory(item.key) soldFor 1.crypto limitFor 1 refreshAfter TimeValue.After(TimeHelper.ONE_DAY)
+        }
+    }
 )
