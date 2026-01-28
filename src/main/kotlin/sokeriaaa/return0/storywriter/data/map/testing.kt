@@ -15,12 +15,17 @@
 package sokeriaaa.return0.storywriter.data.map
 
 import sokeriaaa.return0.shared.common.helpers.TimeHelper
+import sokeriaaa.return0.shared.data.api.component.value.Value
+import sokeriaaa.return0.shared.data.api.component.value.unaryMinus
 import sokeriaaa.return0.shared.data.api.story.event.interactive.buildShop
 import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.values.CommonValue
+import sokeriaaa.return0.shared.data.models.component.values.EventValue
 import sokeriaaa.return0.shared.data.models.component.values.TimeValue
 import sokeriaaa.return0.shared.data.models.entity.category.Category
+import sokeriaaa.return0.shared.data.models.story.currency.CurrencyType
 import sokeriaaa.return0.shared.data.models.story.event.Event
+import sokeriaaa.return0.shared.data.models.story.event.Event.CurrencyChange
 import sokeriaaa.return0.shared.data.models.story.map.MapData
 import sokeriaaa.return0.shared.data.models.story.map.MapEvent
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
@@ -68,6 +73,8 @@ val SWMaps.testing: MapData
             obtainAllEntities,
             obtainPluginSet,
             shop,
+            obtainCurrency,
+            emptyCurrency,
         ),
     )
 
@@ -128,4 +135,26 @@ private val shop: MapEvent = MapEvent(
             inventory(item.key) soldFor 1.crypto limitFor 1 refreshAfter TimeValue.After(TimeHelper.ONE_DAY)
         }
     }
+)
+
+private val obtainCurrency: MapEvent = MapEvent(
+    enabled = CommonCondition.True,
+    trigger = MapEvent.Trigger.INTERACTED,
+    lineNumber = 15,
+    display = "obtainCurrency()",
+    event = Event.Sequence(
+        CurrencyChange(CurrencyType.TOKEN, Value(999999)),
+        CurrencyChange(CurrencyType.CRYPTO, Value(999999)),
+    ),
+)
+
+private val emptyCurrency: MapEvent = MapEvent(
+    enabled = CommonCondition.True,
+    trigger = MapEvent.Trigger.INTERACTED,
+    lineNumber = 16,
+    display = "emptyCurrency()",
+    event = Event.Sequence(
+        CurrencyChange(CurrencyType.TOKEN, -EventValue.Currency(CurrencyType.TOKEN)),
+        CurrencyChange(CurrencyType.CRYPTO, -EventValue.Currency(CurrencyType.CRYPTO)),
+    ),
 )
