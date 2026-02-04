@@ -95,6 +95,12 @@ fun main() {
         Manifest(
             entities = Manifest.Entities(
                 list = SWEntities.values.map { it.name }.sorted(),
+                effects = Manifest.Entities.Effects(
+                    list = SWEffects.values.map { it.name }.sorted(),
+                ),
+                skills = Manifest.Entities.Skills(
+                    list = SWSkills.values.map { it.functionData.name }.sorted(),
+                ),
             ),
         ).toJsonString()
     )
