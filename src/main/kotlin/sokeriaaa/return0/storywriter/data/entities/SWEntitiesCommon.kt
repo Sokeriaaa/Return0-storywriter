@@ -14,7 +14,6 @@
  */
 package sokeriaaa.return0.storywriter.data.entities
 
-import sokeriaaa.return0.shared.data.models.action.function.FunctionData
 import sokeriaaa.return0.shared.data.models.entity.EntityData
 import sokeriaaa.return0.shared.data.models.entity.EntityDropTable
 import sokeriaaa.return0.shared.data.models.entity.category.Category
@@ -47,19 +46,19 @@ object SWEntitiesCommon {
         Category.VOID to listOf("Nullptr", "EmptyReturnTrap", "VoidConsumption"),
     )
 
-    private fun getCommonFunctionSet(category: Category, type: Int): List<FunctionData> = when (type) {
+    private fun getCommonFunctionSet(category: Category, type: Int): List<String> = when (type) {
         0 -> listOf(
-            SWSkillsCommon.getGeneralAttackSkill(category, 0).functionData,
+            SWSkillsCommon.getGeneralAttackSkill(category, 0).functionData.name,
         )
 
         1 -> listOf(
-            SWSkillsCommon.getGeneralAttackSkill(category, 0).functionData,
-            SWSkillsCommon.getGeneralAttackSkill(category, 1).functionData,
+            SWSkillsCommon.getGeneralAttackSkill(category, 0).functionData.name,
+            SWSkillsCommon.getGeneralAttackSkill(category, 1).functionData.name,
         )
 
         2 -> listOf(
-            SWSkillsCommon.getGeneralAttackSkill(category, 1).functionData,
-            SWSkillsCommon.getGeneralAttackSkill(category, 2).functionData,
+            SWSkillsCommon.getGeneralAttackSkill(category, 1).functionData.name,
+            SWSkillsCommon.getGeneralAttackSkill(category, 2).functionData.name,
             // TODO add special function for each category.
         )
 

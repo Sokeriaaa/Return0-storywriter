@@ -94,7 +94,7 @@ fun main() {
     File("./output/data/manifest.json").writeText(
         Manifest(
             entities = Manifest.Entities(
-                list = SWEntities.values.map { it.name },
+                list = SWEntities.values.map { it.name }.sorted(),
             ),
         ).toJsonString()
     )

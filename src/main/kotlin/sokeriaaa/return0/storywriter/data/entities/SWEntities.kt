@@ -31,11 +31,11 @@ object SWEntities {
         baseHP = 314,
         baseSP = 500,
         baseAP = 120,
-        functions = listOf(
-            SWSkills.notify.functionData,
-            SWSkills.wait.functionData,
-            SWSkills.hashCode.functionData,
-        ),
+        functions = sequenceOf(
+            SWSkills.notify,
+            SWSkills.wait,
+            SWSkills.hashCode,
+        ).map { it.functionData.name }.toList(),
     )
 
     val stringBuilder = EntityData(
@@ -48,11 +48,11 @@ object SWEntities {
         baseHP = 275,
         baseSP = 500,
         baseAP = 110,
-        functions = listOf(
-            SWSkills.append.functionData,
-            SWSkills.toString.functionData,
-            SWSkills.delete.functionData,
-        ),
+        functions = sequenceOf(
+            SWSkills.append,
+            SWSkills.toString,
+            SWSkills.delete,
+        ).map { it.functionData.name }.toList(),
         attackModifier = EntityData.GeneralAttackModifier(
             power = 10,
             attackTimes = 3,
@@ -69,11 +69,11 @@ object SWEntities {
         baseHP = 227,
         baseSP = 500,
         baseAP = 110,
-        functions = listOf(
-            SWSkills.forEach.functionData,
-            SWSkills.next.functionData,
-            SWSkills.remove.functionData,
-        ),
+        functions = sequenceOf(
+            SWSkills.forEach,
+            SWSkills.next,
+            SWSkills.remove,
+        ).map { it.functionData.name }.toList(),
         attackModifier = EntityData.GeneralAttackModifier(
             power = 10,
             attackTimes = 3,
@@ -90,11 +90,11 @@ object SWEntities {
         baseHP = 368,
         baseSP = 500,
         baseAP = 130,
-        functions = listOf(
-            SWSkills.getProperty.functionData,
-            SWSkills.gc.functionData,
-            SWSkills.arraycopy.functionData,
-        ),
+        functions = sequenceOf(
+            SWSkills.getProperty,
+            SWSkills.gc,
+            SWSkills.arraycopy,
+        ).map { it.functionData.name }.toList(),
     )
 
     val validator = EntityData(
@@ -107,11 +107,11 @@ object SWEntities {
         baseHP = 286,
         baseSP = 500,
         baseAP = 120,
-        functions = listOf(
-            SWSkills.setResourceResolver.functionData,
-            SWSkills.setErrorHandler.functionData,
-            SWSkills.validate.functionData,
-        ),
+        functions = sequenceOf(
+            SWSkills.setResourceResolver,
+            SWSkills.setErrorHandler,
+            SWSkills.validate,
+        ).map { it.functionData.name }.toList(),
     )
 
     val values = listOf(
