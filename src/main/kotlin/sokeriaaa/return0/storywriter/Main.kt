@@ -15,6 +15,7 @@
 package sokeriaaa.return0.storywriter
 
 import sokeriaaa.return0.shared.common.helpers.JsonHelper.toJsonString
+import sokeriaaa.return0.shared.data.models.Manifest
 import sokeriaaa.return0.storywriter.data.SWCategories
 import sokeriaaa.return0.storywriter.data.SWEffects
 import sokeriaaa.return0.storywriter.data.entities.SWEntities
@@ -87,5 +88,14 @@ fun main() {
             .toSortedMap()
             .toMap()
             .toJsonString(),
+    )
+
+    // Create manifest
+    File("./output/data/manifest.json").writeText(
+        Manifest(
+            entities = Manifest.Entities(
+                list = SWEntities.values.map { it.name },
+            ),
+        ).toJsonString()
     )
 }
