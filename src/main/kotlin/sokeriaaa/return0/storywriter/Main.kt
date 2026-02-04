@@ -33,6 +33,7 @@ fun main() {
     File("./output").mkdir()
     File("./output/data").mkdir()
     File("./output/data/entity").mkdir()
+    File("./output/data/entity/category").mkdir()
     File("./output/data/entity/effect").mkdir()
     File("./output/data/entity/skill").mkdir()
     File("./output/data/inventory").mkdir()
@@ -42,12 +43,28 @@ fun main() {
     File("./output/res").mkdir()
 
     // Output - Category: Entity growth
-    File("./output/data/category_entity_growth.json").writeText(SWCategories.entityGrowthValues.toJsonString())
+    File("./output/data/entity/category/entity_growth.json").writeText(SWCategories.entityGrowthValues.toJsonString())
     // Output - Category: Effectiveness
-    File("./output/data/category_effectiveness.json").writeText(SWCategories.categoryEffectivenessTable.toJsonString())
+    File("./output/data/entity/category/effectiveness.json").writeText(SWCategories.categoryEffectivenessTable.toJsonString())
     // Output - Entity
-    File("./output/data/entity.json").writeText(SWEntities.values.toJsonString())
-
+    SWEntities.values.forEach {
+        // JSON Data
+        File("./output/data/entity/${it.name}.json").writeText(it.toJsonString())
+    }
+    // Output - Entity - Effects
+    SWEffects.values.forEach {
+        // String resource
+        SWStrings.generatedValues["effect.${it.effectData.name}.desc"] = it.simpleDescription
+        // JSON Data
+        File("./output/data/entity/effect/${it.effectData.name}.json").writeText(it.effectData.toJsonString())
+    }
+    // Output - Entity - Skills
+    SWSkills.values.forEach {
+        // String resource
+        SWStrings.generatedValues["skill.${it.functionData.name}.desc"] = it.simpleDescription
+        // JSON Data
+        File("./output/data/entity/skill/${it.functionData.name}.json").writeText(it.functionData.toJsonString())
+    }
     // Output - Maps
     SWMaps.maps.forEach {
         File("./output/data/map/${it.name}.json").writeText(it.toJsonString())
@@ -63,20 +80,6 @@ fun main() {
     // Output - Quests
     SWQuests.quests.forEach {
         File("./output/data/quest/${it.key}.json").writeText(it.toJsonString())
-    }
-    // Output - Entity - Effects
-    SWEffects.values.forEach {
-        // String resource
-        SWStrings.generatedValues["effect.${it.effectData.name}.desc"] = it.simpleDescription
-        // JSON Data
-        File("./output/data/entity/effect/${it.effectData.name}.json").writeText(it.effectData.toJsonString())
-    }
-    // Output - Entity - Skills
-    SWSkills.values.forEach {
-        // String resource
-        SWStrings.generatedValues["skill.${it.functionData.name}.desc"] = it.simpleDescription
-        // JSON Data
-        File("./output/data/entity/skill/${it.functionData.name}.json").writeText(it.functionData.toJsonString())
     }
     // Output - strings
     File("./output/res/strings.json").writeText(
