@@ -17,6 +17,7 @@ package sokeriaaa.return0.storywriter.data.skill
 import sokeriaaa.return0.shared.data.api.component.condition.IF
 import sokeriaaa.return0.shared.data.api.component.condition.gt
 import sokeriaaa.return0.shared.data.api.component.condition.gtEq
+import sokeriaaa.return0.shared.data.api.component.condition.valueCases
 import sokeriaaa.return0.shared.data.api.component.extra.extrasGroupOf
 import sokeriaaa.return0.shared.data.api.component.value.*
 import sokeriaaa.return0.shared.data.models.action.function.FunctionData
@@ -257,14 +258,12 @@ object SWSkills {
             baseSPCost = 100,
             growth = listOf(5, 15, 25, 40, 60, 80),
             extra = CombatExtra.RemoveAllEffect(debuff = true),
-            priority = IF(EntityCondition.Effects.HasAny(debuff = true))
+            priority = valueCases {
                 // 1. Remove debuffs for party.
-                .then(
-                    ifTrue = Value(1),
-                    ifFalse = IF(CombatCondition.TargetingSelf)
-                        // 2. Heal self when HP is low.
-                        .then(ifTrue = Value(0.5F) - EntityValue.HPRate * 2),
-                ),
+                EntityCondition.Effects.HasAny(debuff = true) then Value(1)
+                // 2. Heal self when HP is low.
+                CombatCondition.TargetingSelf then Value(0.5F) - EntityValue.HPRate * 2
+            },
             attackModifier = FunctionData.AttackModifier(
                 actualPower = IF(CombatCondition.TargetingSelf)
                     .then(
