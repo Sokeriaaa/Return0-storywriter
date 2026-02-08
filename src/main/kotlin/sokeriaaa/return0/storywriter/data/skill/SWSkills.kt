@@ -108,7 +108,7 @@ object SWSkills {
             baseSPCost = 150,
             growth = listOf(15, 25, 40, 60, 80),
             attackModifier = FunctionData.AttackModifier(
-                actualPower = (Value(2) shl Value(0, 4)) * (ActionValue.Tier * 1 + 6)
+                actualPower = (Value(2) shl Value(1, 4)) * (ActionValue.Tier * 1 + 6)
             )
         ),
     )
@@ -203,25 +203,6 @@ object SWSkills {
         )
     )
 
-    val remove = SkillEntry(
-        simpleDescription = "Remove the element. Reduces the DEF of target for few turns.",
-        functionData = FunctionData(
-            name = "remove",
-            category = Category.INTERFACE,
-            target = FunctionTarget.SingleEnemy,
-            bullseye = false,
-            basePower = 120,
-            powerBonus = 20,
-            baseSPCost = 200,
-            growth = listOf(25, 55, 80),
-            extra = CombatExtra.AttachEffect(
-                name = SWEffects.overflowed.name,
-                turns = Value(2),
-                tier = ActionValue.Tier,
-            )
-        )
-    )
-
     //===================
     // Entity - System
     //===================
@@ -233,10 +214,10 @@ object SWSkills {
             category = Category.MEMORY,
             target = FunctionTarget.SingleEnemy,
             bullseye = false,
-            basePower = 70,
-            powerBonus = 10,
+            basePower = 45,
+            powerBonus = 15,
             baseSPCost = 100,
-            growth = listOf(0, 10, 20, 35, 50, 70),
+            growth = listOf(0, 10, 20, 35, 50),
             extra = CommonExtra.ForUser(
                 extra = CombatExtra.HPChange(
                     hpChange = CombatValue.DamageCoerced * 0.5F
@@ -371,7 +352,7 @@ object SWSkills {
             growth = listOf(1, 30, 70),
             attackModifier = FunctionData.AttackModifier(
                 actualPower = ActionValue.Skills.Power + (EntityValue.TurnsLeftOf(SWEffects.injected.name) +
-                        CombatValue.ForUser(EntityValue.TurnsLeftOf(SWEffects.cached.name))) * 5,
+                        CombatValue.ForUser(EntityValue.TurnsLeftOf(SWEffects.cached.name))) * (ActionValue.Tier + 4),
             ),
             extra = IF(
                 condition = CommonCondition.Chance(
@@ -413,8 +394,27 @@ object SWSkills {
     //===================
     // Shared
     //===================
+    val remove = SkillEntry(
+        simpleDescription = "Remove the elements. Reduces the ATK of target for few turns.",
+        functionData = FunctionData(
+            name = "remove",
+            category = Category.INTERFACE,
+            target = FunctionTarget.SingleEnemy,
+            bullseye = false,
+            basePower = 120,
+            powerBonus = 20,
+            baseSPCost = 200,
+            growth = listOf(25, 55, 80),
+            extra = CombatExtra.AttachEffect(
+                name = SWEffects.nullPointer.name,
+                turns = Value(2),
+                tier = ActionValue.Tier + 2,
+            )
+        )
+    )
+
     val delete = SkillEntry(
-        simpleDescription = "Chance to remove a single target's all shields. The higher HP rate target has, the higher chance to remove.",
+        simpleDescription = "Delete the elements.  Reduces the DEF of target for few turns.",
         functionData = FunctionData(
             name = "delete",
             category = Category.INTERFACE,
@@ -422,10 +422,13 @@ object SWSkills {
             bullseye = false,
             basePower = 120,
             powerBonus = 20,
-            baseSPCost = 150,
+            baseSPCost = 200,
             growth = listOf(25, 55, 80),
-            extra = IF(CommonCondition.Chance(EntityValue.HPRate))
-                .then(CombatExtra.RemoveAllShields)
+            extra = CombatExtra.AttachEffect(
+                name = SWEffects.overflowed.name,
+                turns = Value(2),
+                tier = ActionValue.Tier + 2,
+            )
         )
     )
 
@@ -437,13 +440,13 @@ object SWSkills {
         toString,
         forEach,
         next,
-        remove,
         getProperty,
         gc,
         arraycopy,
         setResourceResolver,
         setErrorHandler,
         validate,
+        remove,
         delete,
         // All general attack skills.
         *Category.entries
