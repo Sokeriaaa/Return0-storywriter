@@ -14,7 +14,7 @@
  */
 package sokeriaaa.return0.storywriter.data.map
 
-import sokeriaaa.return0.shared.common.helpers.TimeHelper
+import sokeriaaa.kmpshared.helpers.TimeHelper
 import sokeriaaa.return0.shared.data.api.component.value.Value
 import sokeriaaa.return0.shared.data.api.component.value.unaryMinus
 import sokeriaaa.return0.shared.data.api.story.event.interactive.buildShop

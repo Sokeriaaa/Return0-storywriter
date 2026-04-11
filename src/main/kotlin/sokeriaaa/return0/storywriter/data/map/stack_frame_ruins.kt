@@ -1,6 +1,6 @@
 package sokeriaaa.return0.storywriter.data.map
 
-import sokeriaaa.return0.shared.common.helpers.TimeHelper
+import sokeriaaa.kmpshared.helpers.TimeHelper
 import sokeriaaa.return0.shared.data.api.component.condition.IF
 import sokeriaaa.return0.shared.data.api.component.condition.not
 import sokeriaaa.return0.shared.data.api.component.value.Value
