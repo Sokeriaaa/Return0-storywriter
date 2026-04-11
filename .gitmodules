@@ -1,8 +1,8 @@
-[submodule "src/main/kotlin/sokeriaaa/kmpshared"]
-	path = src/main/kotlin/sokeriaaa/kmpshared
+[submodule "src/main/kotlin/sokeriaaa/common/kmp"]
+	path = src/main/kotlin/sokeriaaa/common/kmp
 	url = https://github.com/Sokeriaaa/KMPShared.git
-[submodule "src/test/kotlin/sokeriaaa/kmpshared/test"]
-	path = src/test/kotlin/sokeriaaa/kmpshared/test
+[submodule "src/test/kotlin/sokeriaaa/common/kmp/test"]
+	path = src/test/kotlin/sokeriaaa/common/kmp/test
 	url = https://github.com/Sokeriaaa/KMPShared-test.git
 [submodule "src/main/kotlin/sokeriaaa/return0/shared"]
 	path = src/main/kotlin/sokeriaaa/return0/shared
