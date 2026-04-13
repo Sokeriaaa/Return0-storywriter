@@ -27,6 +27,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.sugarkane.kelp)
     testImplementation(libs.kotlin.test)
+    testImplementation(libs.sugarkane.wrench)
 }
 
 tasks.test {
