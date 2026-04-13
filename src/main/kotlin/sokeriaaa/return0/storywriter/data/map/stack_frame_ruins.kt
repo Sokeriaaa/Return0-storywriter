@@ -1,6 +1,5 @@
 package sokeriaaa.return0.storywriter.data.map
 
-import sokeriaaa.common.kmp.helpers.TimeHelper
 import sokeriaaa.return0.shared.data.api.component.condition.IF
 import sokeriaaa.return0.shared.data.api.component.condition.not
 import sokeriaaa.return0.shared.data.api.component.value.Value
@@ -21,6 +20,7 @@ import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.`object`
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.stringbuilder
 import sokeriaaa.return0.storywriter.utils.dialogueResCounter
+import sokeriaaa.sugarkane.kelp.time.TimeHelper
 
 val SWMaps.stack_frame_ruins: MapData
     get() = MapData(

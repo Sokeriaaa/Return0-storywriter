@@ -14,7 +14,6 @@
  */
 package sokeriaaa.return0.storywriter
 
-import sokeriaaa.common.kmp.helpers.JsonHelper.toJsonString
 import sokeriaaa.return0.shared.data.models.Manifest
 import sokeriaaa.return0.storywriter.data.SWCategories
 import sokeriaaa.return0.storywriter.data.SWEffects
@@ -25,6 +24,7 @@ import sokeriaaa.return0.storywriter.data.plugins.SWPlugins
 import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.data.skill.SWSkills
 import sokeriaaa.return0.storywriter.res.SWStrings
+import sokeriaaa.sugarkane.kelp.serialization.JsonHelper.toJsonString
 import java.io.File
 
 fun main() {

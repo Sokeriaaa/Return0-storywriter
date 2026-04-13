@@ -14,7 +14,6 @@
  */
 package sokeriaaa.return0.storywriter.data.map
 
-import sokeriaaa.common.kmp.helpers.TimeHelper
 import sokeriaaa.return0.shared.data.api.component.value.Value
 import sokeriaaa.return0.shared.data.api.component.value.unaryMinus
 import sokeriaaa.return0.shared.data.api.story.event.interactive.buildShop
@@ -33,6 +32,7 @@ import sokeriaaa.return0.storywriter.data.entities.SWEntitiesCommon
 import sokeriaaa.return0.storywriter.data.inventory.GeneralMaterial
 import sokeriaaa.return0.storywriter.data.inventory.SWInventoriesCommonMaterials
 import sokeriaaa.return0.storywriter.data.plugins.SWPlugins
+import sokeriaaa.sugarkane.kelp.time.TimeHelper
 
 /**
  * This is a map solely for testing proposes and would not accessible in the normal game.
