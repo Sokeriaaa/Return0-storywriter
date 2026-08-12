@@ -3,7 +3,6 @@ package sokeriaaa.return0.storywriter.data.map
 import sokeriaaa.return0.shared.data.api.component.condition.IF
 import sokeriaaa.return0.shared.data.api.component.condition.not
 import sokeriaaa.return0.shared.data.api.component.value.Value
-import sokeriaaa.return0.shared.data.models.component.common.Comparator
 import sokeriaaa.return0.shared.data.models.component.conditions.CommonCondition
 import sokeriaaa.return0.shared.data.models.component.conditions.EventCondition
 import sokeriaaa.return0.shared.data.models.component.values.EventValue
@@ -20,6 +19,7 @@ import sokeriaaa.return0.storywriter.data.quest.SWQuests
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.`object`
 import sokeriaaa.return0.storywriter.data.story.SWDialogueNames.stringbuilder
 import sokeriaaa.return0.storywriter.utils.dialogueResCounter
+import sokeriaaa.sugarkane.kelp.math.components.CompareOp
 import sokeriaaa.sugarkane.kelp.time.TimeHelper
 
 val SWMaps.stack_frame_ruins: MapData
@@ -140,7 +140,7 @@ private val stackFrameRuins01: MapEvent = MapEvent(
 )
 
 private val enemy01: MapEvent = MapEvent(
-    enabled = EventCondition.CompareTime(Comparator.GT, "stack_frame_ruins_enemy01_respawn"),
+    enabled = EventCondition.CompareTime(CompareOp.GT, "stack_frame_ruins_enemy01_respawn"),
     trigger = MapEvent.Trigger.INTERACTED,
     lineNumber = 64,
     display = "catch(e: OutOfMemoryPulse)",
